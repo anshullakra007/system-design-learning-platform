@@ -231,14 +231,14 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
           <p className="question-text">{q.question}</p>
           <div className="options-grid">
             {q.options.map((opt, idx) => (
-              <div 
+              <label 
                 key={idx}
-                className={`exam-option ${answers[currentQuestion] === idx ? 'selected' : ''}`}
+                className={`exam-option-card ${answers[currentQuestion] === idx ? 'selected' : ''}`}
                 onClick={() => handleAnswer(idx)}
               >
-                <span className="option-letter">{String.fromCharCode(65 + idx)}</span>
+                <span className="mr-3 font-bold">{String.fromCharCode(65 + idx)}.</span>
                 <span className="option-text">{opt}</span>
-              </div>
+              </label>
             ))}
           </div>
         </div>

@@ -48,7 +48,7 @@ export default function ExamEngine({ exam }) {
             <p className="q-text"><strong>{qIndex + 1}.</strong> {q.q}</p>
             <div className="exam-options">
               {q.options.map((opt, oIndex) => {
-                let className = "exam-option";
+                let className = "exam-option-card";
                 if (submitted) {
                   if (oIndex === q.correctIndex) className += " correct";
                   else if (answers[qIndex] === oIndex) className += " incorrect";
@@ -56,14 +56,14 @@ export default function ExamEngine({ exam }) {
                   className += " selected";
                 }
                 return (
-                  <div key={oIndex} className={className} onClick={() => handleSelect(qIndex, oIndex)}>
-                    <span className="option-letter">{String.fromCharCode(65 + oIndex)}</span>
+                  <label key={oIndex} className={className} onClick={() => handleSelect(qIndex, oIndex)}>
+                    <span className="mr-3 font-bold">{String.fromCharCode(65 + oIndex)}.</span>
                     <span className="option-text">{opt}</span>
                     <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
                       {submitted && oIndex === q.correctIndex && <CheckCircle2 size={18} className="option-icon" />}
                       {submitted && answers[qIndex] === oIndex && oIndex !== q.correctIndex && <XCircle size={18} className="option-icon" />}
                     </div>
-                  </div>
+                  </label>
                 )
               })}
             </div>
