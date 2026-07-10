@@ -28,6 +28,12 @@ export default function ExamEngine({ exam }) {
     return acc + (answers[qIndex] === exam.questions[qIndex].correctIndex ? 1 : 0)
   }, 0)
 
+  const handleSubmit = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    setSubmitted(true);
+    localStorage.setItem(getStorageKey('submitted'), 'true');
+  };
+
   return (
     <div className="exam-container">
       <h2 className="exam-title">
