@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { ClipboardList, CheckCircle2, XCircle, RotateCcw } from 'lucide-react'
 
 export default function ExamEngine({ exam }) {
   const [answers, setAnswers] = useState({})
@@ -22,7 +23,10 @@ export default function ExamEngine({ exam }) {
 
   return (
     <div className="exam-container">
-      <h2 className="exam-title">{exam.title}</h2>
+      <h2 className="exam-title">
+        <ClipboardList size={32} className="inline-icon" /> 
+        {exam.title}
+      </h2>
       {exam.questions.map((q, qIndex) => {
         const isCorrect = answers[qIndex] === q.correctIndex;
         const hasAnswered = answers[qIndex] !== undefined;
@@ -40,7 +44,11 @@ export default function ExamEngine({ exam }) {
                 }
                 return (
                   <div key={oIndex} className={className} onClick={() => handleSelect(qIndex, oIndex)}>
-                    {opt}
+                    <div className="option-content">
+                      {submitted && oIndex === q.correctIndex && <CheckCircle2 size={18} className="option-icon" />}
+                      {submitted && answers[qIndex] === oIndex && oIndex !== q.correctIndex && <XCircle size={18} className="option-icon" />}
+                      <span>{opt}</span>
+                    </div>
                   </div>
                 )
               })}
@@ -67,7 +75,7 @@ export default function ExamEngine({ exam }) {
           <div className="exam-results">
             <h3>Final Score: {score} / {exam.questions.length}</h3>
             <button className="btn-secondary" onClick={() => { setSubmitted(false); setAnswers({}); }}>
-              Retake Exam
+              <RotateCcw size={16} className="inline-icon" /> Retake Exam
             </button>
           </div>
         )}

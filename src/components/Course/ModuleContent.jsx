@@ -1,11 +1,15 @@
 import ReactMarkdown from 'react-markdown'
 import Exercise from './Exercise'
+import { BookOpen, Microscope, Lightbulb } from 'lucide-react'
 
 export default function ModuleContent({ activeModule }) {
   return (
     <>
       <div className="module-header">
-        <h1>{activeModule.title}</h1>
+        <div className="module-title-wrapper">
+          <BookOpen className="module-header-icon" size={48} />
+          <h1>{activeModule.title}</h1>
+        </div>
         <p className="module-desc">{activeModule.description}</p>
       </div>
 
@@ -21,7 +25,10 @@ export default function ModuleContent({ activeModule }) {
 
           {chapter.deepDive && (
             <div className="deep-dive-card">
-              <h3><span className="badge">Deep Dive</span> {chapter.deepDive.title}</h3>
+              <h3 className="deep-dive-title">
+                <span className="badge"><Microscope size={14} className="inline-icon" /> Deep Dive</span> 
+                {chapter.deepDive.title}
+              </h3>
               <div className="deep-dive-content">
                 <ReactMarkdown components={{ a: ({node, ...props}) => <a target="_blank" rel="noopener noreferrer" {...props} /> }}>
                   {chapter.deepDive.content.join('\n\n')}
@@ -32,7 +39,10 @@ export default function ModuleContent({ activeModule }) {
 
           {chapter.exercises && chapter.exercises.length > 0 && (
             <div className="exercises-section">
-              <h3>Knowledge Check</h3>
+              <h3 className="exercise-section-title">
+                <Lightbulb size={24} className="inline-icon highlight-icon" /> 
+                Knowledge Check
+              </h3>
               <div className="exercises-grid">
                 {chapter.exercises.map((ex, exIdx) => (
                   <Exercise key={exIdx} exercise={ex} index={exIdx} />
