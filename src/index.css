@@ -97,37 +97,62 @@ body {
   color: var(--text-main);
 }
 
-/* Cards / Topics */
-.topic-container {
+/* Module Content Layout */
+.chapter-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
 }
 
-.topic-title {
-  font-size: 1.5rem;
-  font-weight: 600;
+.chapter-title {
+  font-size: 1.8rem;
+  font-weight: 700;
   color: var(--text-main);
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
 
-.card {
-  padding: 2rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
+.chapter-content p {
+  color: #a0a0a0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
 }
 
-.card h3 {
+.module-desc {
+  color: var(--text-muted);
   font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+/* Deep Dive Card */
+.deep-dive-card {
+  padding: 2.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.deep-dive-card h3 {
+  font-size: 1.2rem;
   color: var(--text-main);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+.deep-dive-content p {
+  color: #a0a0a0;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.deep-dive-content p:last-child {
+  margin-bottom: 0;
 }
 
 .badge {
@@ -141,67 +166,188 @@ body {
   font-weight: 700;
 }
 
-.card p {
-  color: #a0a0a0;
-  font-size: 1rem;
-  line-height: 1.7;
+/* Exercises */
+.exercises-section {
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 3rem;
 }
 
-/* Tables */
-.table-wrapper {
-  overflow-x: auto;
-  border-radius: 6px;
-  border: 1px solid var(--border-color);
-  margin-top: 1.5rem;
+.exercises-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
+.exercises-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
 
-th, td {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-th {
-  background: var(--bg-secondary);
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-}
-
-td {
-  color: #a0a0a0;
-  font-size: 0.95rem;
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-/* Interview Section */
-.interview-box {
+.exercise-card {
   background: #111;
   border: 1px solid var(--border-color);
+  padding: 2rem;
+  border-radius: 6px;
 }
 
-.interview-q {
+.exercise-q {
   font-weight: 600;
   color: var(--text-main);
-  margin-bottom: 0.75rem;
   font-size: 1.05rem;
+  margin-bottom: 1rem;
 }
 
-.interview-a {
+.exercise-a {
   color: #a0a0a0;
-  border-left: 2px solid var(--border-color);
+  border-left: 2px solid var(--text-main);
   padding-left: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  line-height: 1.6;
+}
+
+/* Exam Engine */
+.exam-divider {
+  border: none;
+  border-top: 2px dashed var(--border-color);
+  margin: 6rem 0;
+}
+
+.exam-container {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 3rem;
+  border-radius: 8px;
+  margin-bottom: 5rem;
+}
+
+.exam-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.exam-question {
+  margin-bottom: 3rem;
+}
+
+.q-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.exam-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.exam-option {
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--bg-color);
+  transition: all 0.2s;
+  color: #a0a0a0;
+}
+
+.exam-option:hover {
+  border-color: #555;
+  color: var(--text-main);
+}
+
+.exam-option.selected {
+  border-color: var(--text-main);
+  color: var(--text-main);
+  background: #1a1a1a;
+}
+
+.exam-option.correct {
+  border-color: #2ea043;
+  background: rgba(46, 160, 67, 0.1);
+  color: #2ea043;
+  font-weight: 600;
+}
+
+.exam-option.incorrect {
+  border-color: #f85149;
+  background: rgba(248, 81, 73, 0.1);
+  color: #f85149;
+  text-decoration: line-through;
+}
+
+.exam-explanation {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.exam-explanation.success {
+  background: rgba(46, 160, 67, 0.05);
+  border-left: 2px solid #2ea043;
+  color: #e6ffec;
+}
+
+.exam-explanation.error {
+  background: rgba(248, 81, 73, 0.05);
+  border-left: 2px solid #f85149;
+  color: #ffebe9;
+}
+
+.exam-actions {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.exam-results h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--text-main);
+  color: var(--bg-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.btn-primary:disabled {
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--text-main);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: var(--text-main);
+  color: var(--bg-color);
 }
 
 /* Login Screen */
@@ -235,23 +381,6 @@ tr:last-child td {
   font-size: 0.95rem;
 }
 
-.btn-primary {
-  background: var(--text-main);
-  color: var(--bg-color);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
-  transition: opacity 0.2s;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-}
-
 /* Auth Header */
 .auth-header {
   position: absolute;
@@ -282,21 +411,6 @@ tr:last-child td {
 .btn-logout:hover {
   color: var(--text-main);
   border-color: var(--text-main);
-}
-
-/* Code Snippets */
-pre {
-  background: var(--bg-color);
-  padding: 1rem;
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
-  overflow-x: auto;
-  margin-top: 1rem;
-  font-family: monospace;
-  font-size: 0.9rem;
-}
-code {
-  color: var(--text-main);
 }
 
 /* Scrollbar */

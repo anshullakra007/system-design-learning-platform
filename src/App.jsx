@@ -3,6 +3,96 @@ import { auth, googleProvider } from './firebase'
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
 import { modules } from './data/modules'
 
+function Exercise({ exercise, index }) {
+  const [showAnswer, setShowAnswer] = useState(false)
+  return (
+    <div className="exercise-card">
+      <div className="exercise-q"><strong>Q{index + 1}:</strong> {exercise.question}</div>
+      {showAnswer ? (
+        <div className="exercise-a"><strong>A:</strong> {exercise.answer}</div>
+      ) : (
+        <button className="btn-secondary" onClick={() => setShowAnswer(true)}>Reveal Answer</button>
+      )}
+    </div>
+  )
+}
+
+function Exam({ exam }) {
+  const [answers, setAnswers] = useState({})
+  const [submitted, setSubmitted] = useState(false)
+
+  // Reset exam when switching modules
+  useEffect(() => {
+    setAnswers({})
+    setSubmitted(false)
+  }, [exam])
+
+  const handleSelect = (qIndex, optionIndex) => {
+    if (!submitted) {
+      setAnswers({ ...answers, [qIndex]: optionIndex })
+    }
+  }
+
+  const score = Object.keys(answers).reduce((acc, qIndex) => {
+    return acc + (answers[qIndex] === exam.questions[qIndex].correctIndex ? 1 : 0)
+  }, 0)
+
+  return (
+    <div className="exam-container">
+      <h2 className="exam-title">{exam.title}</h2>
+      {exam.questions.map((q, qIndex) => {
+        const isCorrect = answers[qIndex] === q.correctIndex;
+        const hasAnswered = answers[qIndex] !== undefined;
+        return (
+          <div key={qIndex} className="exam-question">
+            <p className="q-text"><strong>{qIndex + 1}.</strong> {q.q}</p>
+            <div className="exam-options">
+              {q.options.map((opt, oIndex) => {
+                let className = "exam-option";
+                if (submitted) {
+                  if (oIndex === q.correctIndex) className += " correct";
+                  else if (answers[qIndex] === oIndex) className += " incorrect";
+                } else if (answers[qIndex] === oIndex) {
+                  className += " selected";
+                }
+                return (
+                  <div key={oIndex} className={className} onClick={() => handleSelect(qIndex, oIndex)}>
+                    {opt}
+                  </div>
+                )
+              })}
+            </div>
+            {submitted && hasAnswered && (
+              <div className={`exam-explanation ${isCorrect ? 'success' : 'error'}`}>
+                <strong>{isCorrect ? '✅ Correct!' : '❌ Incorrect.'}</strong> {q.explanation}
+              </div>
+            )}
+          </div>
+        )
+      })}
+      
+      <div className="exam-actions">
+        {!submitted ? (
+          <button 
+            className="btn-primary" 
+            onClick={() => setSubmitted(true)} 
+            disabled={Object.keys(answers).length !== exam.questions.length}
+          >
+            Submit Exam
+          </button>
+        ) : (
+          <div className="exam-results">
+            <h3>Final Score: {score} / {exam.questions.length}</h3>
+            <button className="btn-secondary" onClick={() => { setSubmitted(false); setAnswers({}); }}>
+              Retake Exam
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function App() {
   const [user, setUser] = useState(null)
   const [activeModuleId, setActiveModuleId] = useState(1)
@@ -21,7 +111,7 @@ function App() {
       await signInWithPopup(auth, googleProvider)
     } catch (error) {
       console.error("Login failed:", error)
-      alert("Note: To enable Google Login, you must configure the firebase.js file with your Firebase project keys.")
+      alert("Note: To enable Google Login, you must configure the firebase.js file with your Firebase project keys and whitelist the domain in Firebase.")
     }
   }
 
@@ -55,14 +145,14 @@ function App() {
       </header>
 
       <aside className="sidebar">
-        <h2>SYSTEM DESIGN</h2>
+        <h2>COURSE MODULES</h2>
         {modules.map(mod => (
           <button
             key={mod.id}
             className={`module-link ${activeModuleId === mod.id ? 'active' : ''}`}
             onClick={() => setActiveModuleId(mod.id)}
           >
-            {mod.title}
+            {mod.title.replace('Module ' + mod.id + ': ', '')}
           </button>
         ))}
       </aside>
@@ -70,47 +160,49 @@ function App() {
       <main className="main-content">
         <div className="module-header">
           <h1>{activeModule.title}</h1>
+          <p className="module-desc">{activeModule.description}</p>
         </div>
 
-        {activeModule.topics.map((topic, idx) => (
-          <div key={idx} className="topic-container">
-            <h2 className="topic-title">{topic.title}</h2>
+        {activeModule.chapters.map((chapter, idx) => (
+          <div key={idx} className="chapter-container">
+            <h2 className="chapter-title">{chapter.title}</h2>
             
-            <div className="card">
-              <h3><span className="badge">Heuristics</span> {topic.concept}</h3>
-              <p>{topic.dive}</p>
+            <div className="chapter-content">
+              {chapter.content.map((paragraph, pIdx) => (
+                <p key={pIdx}>{paragraph}</p>
+              ))}
             </div>
 
-            {topic.tradeoffs && topic.tradeoffs.length > 0 && (
-              <div className="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      {Object.keys(topic.tradeoffs[0]).map(key => (
-                        <th key={key}>{key}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {topic.tradeoffs.map((row, i) => (
-                      <tr key={i}>
-                        {Object.values(row).map((val, j) => (
-                          <td key={j}>{val}</td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            {chapter.deepDive && (
+              <div className="deep-dive-card">
+                <h3><span className="badge">Deep Dive</span> {chapter.deepDive.title}</h3>
+                <div className="deep-dive-content">
+                  {chapter.deepDive.content.map((p, pIdx) => (
+                    <p key={pIdx}>{p}</p>
+                  ))}
+                </div>
               </div>
             )}
 
-            <div className="card interview-box">
-              <h3><span className="badge" style={{background: '#444'}}>Interview</span> Application</h3>
-              <div className="interview-q">Q: {topic.interview.question}</div>
-              <div className="interview-a">{topic.interview.answer}</div>
-            </div>
+            {chapter.exercises && chapter.exercises.length > 0 && (
+              <div className="exercises-section">
+                <h3>Knowledge Check</h3>
+                <div className="exercises-grid">
+                  {chapter.exercises.map((ex, exIdx) => (
+                    <Exercise key={exIdx} exercise={ex} index={exIdx} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ))}
+
+        <hr className="exam-divider" />
+        
+        {activeModule.exam && (
+          <Exam exam={activeModule.exam} />
+        )}
+        
       </main>
     </div>
   )
