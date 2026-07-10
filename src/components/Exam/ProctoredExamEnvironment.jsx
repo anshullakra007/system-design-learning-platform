@@ -206,14 +206,14 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
           <p className="question-text">{q.question}</p>
           <div className="options-grid">
             {q.options.map((opt, idx) => (
-              <button 
+              <div 
                 key={idx}
                 className={`exam-option ${answers[currentQuestion] === idx ? 'selected' : ''}`}
                 onClick={() => handleAnswer(idx)}
               >
-                <span className="opt-letter">{String.fromCharCode(65 + idx)}</span>
-                {opt}
-              </button>
+                <span className="option-letter">{String.fromCharCode(65 + idx)}</span>
+                <span className="option-text">{opt}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -241,8 +241,7 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
 
       {/* Picture in Picture Webcam */}
       <div className="pip-webcam">
-        <div className="rec-indicator"><span className="red-dot"></span> REC</div>
-        <video ref={videoRef} autoPlay muted playsInline></video>
+        <video ref={videoRef} autoPlay muted playsInline className="webcam-preview"></video>
       </div>
     </div>
   );

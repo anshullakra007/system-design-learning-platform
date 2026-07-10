@@ -57,10 +57,11 @@ export default function ExamEngine({ exam }) {
                 }
                 return (
                   <div key={oIndex} className={className} onClick={() => handleSelect(qIndex, oIndex)}>
-                    <div className="option-content">
+                    <span className="option-letter">{String.fromCharCode(65 + oIndex)}</span>
+                    <span className="option-text">{opt}</span>
+                    <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
                       {submitted && oIndex === q.correctIndex && <CheckCircle2 size={18} className="option-icon" />}
                       {submitted && answers[qIndex] === oIndex && oIndex !== q.correctIndex && <XCircle size={18} className="option-icon" />}
-                      <span>{opt}</span>
                     </div>
                   </div>
                 )

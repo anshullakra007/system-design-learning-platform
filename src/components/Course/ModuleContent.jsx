@@ -20,6 +20,24 @@ export default function ModuleContent({ activeModule }) {
         <p className="module-desc">{activeModule.description}</p>
       </div>
 
+      {activeModule.title.toLowerCase().includes("approach a system design") && (
+        <div style={{ marginBottom: '4rem' }}>
+          <h2 className="chapter-title" style={{ marginBottom: '1rem' }}>Visual Blueprint: The Approach</h2>
+          <Mermaid chart={`graph TD
+    A[1. Requirement Gathering] -->|Clarify Ambiguity| B[2. Capacity Estimation]
+    B -->|Define Scale| C[3. High Level Design]
+    C -->|Core Components| D[4. Detailed Design]
+    D -->|Bottlenecks & Tradeoffs| E[5. Resolve & Scale]
+    
+    style A fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+          `} />
+        </div>
+      )}
+
       {activeModule.chapters.map((chapter, idx) => (
         <div key={idx} className="chapter-container">
           <h2 className="chapter-title">{chapter.title}</h2>
