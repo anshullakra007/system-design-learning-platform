@@ -544,3 +544,102 @@ body {
   flex-grow: 1;
   padding-right: 0.5rem;
 }
+
+/* Practice Table */
+.practice-container {
+  padding-bottom: 4rem;
+}
+.practice-table {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+.practice-table-header {
+  display: flex;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 700;
+  color: var(--text-main);
+  background: rgba(255,255,255,0.02);
+}
+.practice-row {
+  border-bottom: 1px solid var(--border-color);
+}
+.practice-row:last-child {
+  border-bottom: none;
+}
+.practice-row-main {
+  display: flex;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.practice-row-main:hover {
+  background: rgba(255,255,255,0.03);
+}
+.col-problem {
+  flex: 1;
+  font-weight: 500;
+}
+.col-difficulty {
+  width: 120px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.practice-details {
+  padding: 2rem 1.5rem;
+  background: var(--bg-color);
+  border-top: 1px dashed var(--border-color);
+}
+.practice-details h3 {
+  color: var(--text-main);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+.practice-prompt ul {
+  padding-left: 1.5rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+.practice-prompt li {
+  margin-bottom: 0.5rem;
+}
+.hint-box {
+  margin-bottom: 1rem;
+}
+.hint-box p {
+  padding: 1rem;
+  background: rgba(96, 165, 250, 0.1);
+  border-left: 3px solid #60a5fa;
+  border-radius: 4px;
+  color: #e5e5e5;
+  margin: 0;
+}
+.btn-hint {
+  background: transparent;
+  border: 1px dashed var(--border-color);
+  color: var(--text-muted);
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+}
+.btn-hint:hover:not(:disabled) {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-main);
+}
+.practice-solution {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+.solution-diagram-wrapper {
+  margin-top: 2rem;
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}

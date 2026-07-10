@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
+import rehypeSlug from 'rehype-slug'
 import Exercise from './Exercise'
 import Mermaid from '../Mermaid'
 import { BookOpen, Microscope, Lightbulb } from 'lucide-react'
@@ -21,9 +22,24 @@ export default function ModuleContent({ activeModule }) {
           
           <div className="chapter-content">
             <ReactMarkdown 
-              rehypePlugins={[rehypeRaw]} 
+              rehypePlugins={[rehypeRaw, rehypeSlug]} 
               components={{ 
-                a: ({node, ...props}) => <a target="_blank" rel="noopener noreferrer" {...props} />,
+                a: ({node, ...props}) => {
+                  if (props.href && props.href.startsWith('#')) {
+                    return (
+                      <a 
+                        {...props} 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const id = props.href.substring(1);
+                          const el = document.getElementById(id);
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                      />
+                    )
+                  }
+                  return <a target="_blank" rel="noopener noreferrer" {...props} />
+                },
                 code({node, inline, className, children, ...props}) {
                   const match = /language-(\w+)/.exec(className || '')
                   if (!inline && match && match[1] === 'mermaid') {
@@ -45,9 +61,24 @@ export default function ModuleContent({ activeModule }) {
               </h3>
               <div className="deep-dive-content">
                 <ReactMarkdown 
-                  rehypePlugins={[rehypeRaw]} 
+                  rehypePlugins={[rehypeRaw, rehypeSlug]} 
                   components={{ 
-                    a: ({node, ...props}) => <a target="_blank" rel="noopener noreferrer" {...props} />,
+                    a: ({node, ...props}) => {
+                      if (props.href && props.href.startsWith('#')) {
+                        return (
+                          <a 
+                            {...props} 
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const id = props.href.substring(1);
+                              const el = document.getElementById(id);
+                              if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                          />
+                        )
+                      }
+                      return <a target="_blank" rel="noopener noreferrer" {...props} />
+                    },
                     code({node, inline, className, children, ...props}) {
                       const match = /language-(\w+)/.exec(className || '')
                       if (!inline && match && match[1] === 'mermaid') {

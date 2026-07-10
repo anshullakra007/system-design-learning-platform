@@ -4,10 +4,12 @@ import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Login from './components/Auth/Login'
 import Sidebar from './components/Navigation/Sidebar'
+import { practiceProblems } from './data/practice'
 
 // Code Splitting: Lazy load heavy components
 const ModuleContent = lazy(() => import('./components/Course/ModuleContent'))
 const ExamEngine = lazy(() => import('./components/Exam/ExamEngine'))
+const PracticeProblems = lazy(() => import('./components/Course/PracticeProblems'))
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -42,7 +44,16 @@ function App() {
   useEffect(() => {
     if (user && modulesData.length === 0) {
       import('./data/modules.js')
-        .then(data => setModulesData(data.modules))
+        .then(data => {
+          const loadedModules = data.modules;
+          // Append Certification Module
+          loadedModules.push({
+            id: 'certification-practice',
+            title: '🏆 Certification & Practice',
+            isSpecial: true
+          });
+          setModulesData(loadedModules);
+        })
         .catch(err => console.error("Failed to load modules payload", err))
     }
   }, [user])
@@ -107,12 +118,18 @@ function App() {
 
           <main className="main-content">
             <Suspense fallback={<div>Loading course material...</div>}>
-              {activeModule && <ModuleContent activeModule={activeModule} />}
-              
-              <hr className="exam-divider" />
-              
-              {activeModule && activeModule.exam && (
-                <ExamEngine exam={activeModule.exam} />
+              {activeModule && activeModule.isSpecial ? (
+                <PracticeProblems problems={practiceProblems} />
+              ) : (
+                <>
+                  {activeModule && <ModuleContent activeModule={activeModule} />}
+                  
+                  <hr className="exam-divider" />
+                  
+                  {activeModule && activeModule.exam && (
+                    <ExamEngine exam={activeModule.exam} />
+                  )}
+                </>
               )}
               
               <div className="module-nav">

@@ -1,7 +1,7 @@
 import { 
   Database, Zap, Network, Shield, Timer, 
   Layers, HardDrive, BookOpen, MessageSquare, 
-  Settings, Server, ArrowDownUp, Search, Briefcase 
+  Settings, Server, ArrowDownUp, Search, Briefcase, Target 
 } from 'lucide-react'
 
 // Helper to map module titles to Lucide icons
@@ -34,8 +34,8 @@ export default function Sidebar({ modules, activeModuleId, setActiveModuleId }) 
             className={`module-link ${activeModuleId === mod.id ? 'active' : ''}`}
             onClick={() => setActiveModuleId(mod.id)}
           >
-            <span className="icon-wrapper">{getModuleIcon(mod.title)}</span>
-            <span className="module-title-text">{mod.title.replace('Module ' + mod.id + ': ', '')}</span>
+            <span className="icon-wrapper">{mod.isSpecial ? <Target size={18} /> : getModuleIcon(mod.title)}</span>
+            <span className="module-title-text">{mod.isSpecial ? mod.title : mod.title.replace('Module ' + mod.id + ': ', '')}</span>
           </button>
         ))}
       </div>
