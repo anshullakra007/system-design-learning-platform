@@ -56,6 +56,7 @@ function App() {
         })
         .catch(err => console.error("Failed to load modules payload", err))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   // Sync active module to localStorage

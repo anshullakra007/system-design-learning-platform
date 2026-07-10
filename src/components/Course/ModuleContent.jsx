@@ -24,7 +24,7 @@ export default function ModuleContent({ activeModule }) {
             <ReactMarkdown 
               rehypePlugins={[rehypeRaw, rehypeSlug]} 
               components={{ 
-                a: ({node, ...props}) => {
+                a: ({_node, ...props}) => {
                   if (props.href && props.href.startsWith('#')) {
                     return (
                       <a 
@@ -40,7 +40,7 @@ export default function ModuleContent({ activeModule }) {
                   }
                   return <a target="_blank" rel="noopener noreferrer" {...props} />
                 },
-                code({node, inline, className, children, ...props}) {
+                code({_node, inline, className, children, ...props}) {
                   const match = /language-(\w+)/.exec(className || '')
                   if (!inline && match && match[1] === 'mermaid') {
                     return <Mermaid chart={String(children).replace(/\n$/, '')} />
@@ -63,7 +63,7 @@ export default function ModuleContent({ activeModule }) {
                 <ReactMarkdown 
                   rehypePlugins={[rehypeRaw, rehypeSlug]} 
                   components={{ 
-                    a: ({node, ...props}) => {
+                    a: ({_node, ...props}) => {
                       if (props.href && props.href.startsWith('#')) {
                         return (
                           <a 
@@ -79,7 +79,7 @@ export default function ModuleContent({ activeModule }) {
                       }
                       return <a target="_blank" rel="noopener noreferrer" {...props} />
                     },
-                    code({node, inline, className, children, ...props}) {
+                    code({_node, inline, className, children, ...props}) {
                       const match = /language-(\w+)/.exec(className || '')
                       if (!inline && match && match[1] === 'mermaid') {
                         return <Mermaid chart={String(children).replace(/\n$/, '')} />

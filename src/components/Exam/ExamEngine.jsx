@@ -17,6 +17,7 @@ export default function ExamEngine({ exam }) {
   useEffect(() => {
     localStorage.setItem(getStorageKey('answers'), JSON.stringify(answers));
     localStorage.setItem(getStorageKey('submitted'), submitted);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answers, submitted, exam.title])
 
   const handleSelect = (qIndex, optionIndex) => {
