@@ -4,6 +4,7 @@ import CertificateView from './CertificateView';
 
 export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }) {
   const [examState, setExamState] = useState('setup'); // setup, running, failed, completed
+  const [permissionError, setPermissionError] = useState('');
   const [warnings, setWarnings] = useState(0);
   const [timeLeft, setTimeLeft] = useState(tierData.timeLimit);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -43,8 +44,7 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
 
       setExamState('running');
     } catch (error) {
-      console.error("Proctoring setup failed", error);
-      alert("You must allow both Webcam and Screen Sharing to start the certification.");
+      setPermissionError("Hardware access denied. You must explicitly allow both Webcam and Screen Sharing to begin the certification.");
     }
   };
 
@@ -135,9 +135,18 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
             <p><MonitorPlay size={18} /> Full screen sharing is required.</p>
             <p><AlertTriangle size={18} /> Tab switching or leaving the window will result in auto-failure.</p>
           </div>
+          
+          {permissionError && (
+            <div className="error-banner" style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', padding: '1rem', borderRadius: '4px', marginBottom: '1.5rem', fontSize: '0.9rem', textAlign: 'left' }}>
+              <AlertTriangle size={16} style={{display: 'inline', marginRight: '8px'}} />
+              {permissionError}
+            </div>
+          )}
+
           <button className="primary-btn pulse-red" onClick={startProctoring}>
             Accept & Begin Exam
           </button>
+          <button className="secondary-btn" onClick={onExit} style={{marginLeft: '1rem'}}>Cancel</button>
         </div>
       </div>
     );

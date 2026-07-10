@@ -27,7 +27,9 @@ export default function Mermaid({ chart }) {
         if (containerRef.current) {
           containerRef.current.innerHTML = result.svg;
         }
-      }).catch(err => console.error("Mermaid parsing failed", err));
+      }).catch(() => {
+        // silently handle mermaid errors
+      });
     }
   }, [chart]);
 

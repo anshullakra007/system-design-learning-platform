@@ -11,6 +11,7 @@ const ModuleContent = lazy(() => import('./components/Course/ModuleContent'))
 const ExamEngine = lazy(() => import('./components/Exam/ExamEngine'))
 const PracticeProblems = lazy(() => import('./components/Course/PracticeProblems'))
 const CertificationDashboard = lazy(() => import('./components/Exam/CertificationDashboard'))
+import LoadingSkeleton from './components/Navigation/LoadingSkeleton'
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -33,7 +34,7 @@ function App() {
           const data = await import('./data/modules.js')
           setModulesData(data.modules)
         } catch (err) {
-          console.error("Failed to load modules payload", err)
+          // silently handle module load failure
         }
       }
       setLoading(false)
@@ -60,7 +61,9 @@ function App() {
           });
           setModulesData(loadedModules);
         })
-        .catch(err => console.error("Failed to load modules payload", err))
+        .catch(err => {
+          // silently handle module load failure
+        });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
@@ -124,7 +127,7 @@ function App() {
           />
 
           <main className="main-content">
-            <Suspense fallback={<div>Loading course material...</div>}>
+            <Suspense fallback={<LoadingSkeleton />}>
               {activeModule && activeModule.isSpecial === 'practice' ? (
                 <PracticeProblems problems={practiceProblems} />
               ) : activeModule && activeModule.isSpecial === 'proctored' ? (

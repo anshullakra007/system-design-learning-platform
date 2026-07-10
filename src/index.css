@@ -947,3 +947,46 @@ html, body {
   width: 100%;
   -webkit-overflow-scrolling: touch;
 }
+
+/* Loading Skeleton Polish */
+.skeleton-wrapper {
+  padding: 2rem;
+  max-width: 800px;
+  width: 100%;
+}
+.skeleton-title {
+  height: 2.5rem;
+  width: 50%;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.skeleton-subtitle {
+  height: 1.5rem;
+  width: 30%;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  margin-bottom: 3rem;
+}
+.skeleton-paragraph {
+  height: 1rem;
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+.skeleton-box {
+  height: 200px;
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+.pulse {
+  animation: pulse-bg 1.5s infinite ease-in-out;
+}
+@keyframes pulse-bg {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
