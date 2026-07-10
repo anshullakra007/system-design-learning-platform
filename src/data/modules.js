@@ -649,6 +649,20 @@ export const modules = [
     "description": "Exhaustive guide and interview questions on Availability vs consistency",
     "chapters": [
       {
+        "title": "Overview",
+        "content": [
+          "```mermaid\ngraph LR\n    subgraph CAP Theorem\n    C((Consistency)) --- A((Availability))\n    A --- P((Partition Tolerance))\n    P --- C\n    end\n    style P fill:#047857,stroke:#10b981\n```",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Explain the core concepts and trade-offs of Availability vs consistency.",
+            "answer": "Review the Availability vs consistency module architecture and diagrams to solidify your understanding."
+          }
+        ]
+      },
+      {
         "title": "CAP theorem",
         "content": [
           "",
@@ -1005,6 +1019,7 @@ export const modules = [
       {
         "title": "Overview",
         "content": [
+          "```mermaid\nsequenceDiagram\n    participant User\n    participant Browser\n    participant Resolver as DNS Resolver\n    participant Root as Root Server\n    participant TLD as TLD Server\n    participant Auth as Auth Nameserver\n    User->>Browser: Type google.com\n    Browser->>Resolver: Where is google.com?\n    Resolver->>Root: Query .com\n    Root-->>Resolver: Go to TLD Server\n    Resolver->>TLD: Query google.com\n    TLD-->>Resolver: Go to Auth Server\n    Resolver->>Auth: Query google.com A Record\n    Auth-->>Resolver: IP: 142.250.190.46\n    Resolver-->>Browser: IP: 142.250.190.46\n    Browser->>Browser: Cache IP\n```",
           "",
           "<p align=\"center\">",
           "<img src=\"https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/IOyLj4i.jpg\">",
@@ -1099,6 +1114,7 @@ export const modules = [
       {
         "title": "Overview",
         "content": [
+          "```mermaid\ngraph TD\n    Client1[User - Europe] -->|Requests Video| Edge1[CDN Edge Server - Frankfurt]\n    Client2[User - Asia] -->|Requests Video| Edge2[CDN Edge Server - Tokyo]\n    Edge1 -.->|Cache Miss| Origin[(Origin Server - US East)]\n    Edge2 -.->|Cache Miss| Origin\n    Origin -.->|Video Chunk| Edge1\n    Origin -.->|Video Chunk| Edge2\n    Edge1 -->|Cache Hit| Client3[User 2 - Europe]\n    style Edge1 fill:#1e3a8a,stroke:#3b82f6\n    style Edge2 fill:#1e3a8a,stroke:#3b82f6\n    style Origin fill:#991b1b,stroke:#ef4444\n```",
           "",
           "<p align=\"center\">",
           "<img src=\"https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/h9TAuGI.jpg\">",

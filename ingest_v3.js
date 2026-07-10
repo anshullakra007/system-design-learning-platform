@@ -1,6 +1,50 @@
 import fs from 'fs';
 import https from 'https';
 
+const DIAGRAMS = {
+  "content delivery network": `\`\`\`mermaid
+graph TD
+    Client1[User - Europe] -->|Requests Video| Edge1[CDN Edge Server - Frankfurt]
+    Client2[User - Asia] -->|Requests Video| Edge2[CDN Edge Server - Tokyo]
+    Edge1 -.->|Cache Miss| Origin[(Origin Server - US East)]
+    Edge2 -.->|Cache Miss| Origin
+    Origin -.->|Video Chunk| Edge1
+    Origin -.->|Video Chunk| Edge2
+    Edge1 -->|Cache Hit| Client3[User 2 - Europe]
+    style Edge1 fill:#1e3a8a,stroke:#3b82f6
+    style Edge2 fill:#1e3a8a,stroke:#3b82f6
+    style Origin fill:#991b1b,stroke:#ef4444
+\`\`\``,
+  "domain name system": `\`\`\`mermaid
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Resolver as DNS Resolver
+    participant Root as Root Server
+    participant TLD as TLD Server
+    participant Auth as Auth Nameserver
+    User->>Browser: Type google.com
+    Browser->>Resolver: Where is google.com?
+    Resolver->>Root: Query .com
+    Root-->>Resolver: Go to TLD Server
+    Resolver->>TLD: Query google.com
+    TLD-->>Resolver: Go to Auth Server
+    Resolver->>Auth: Query google.com A Record
+    Auth-->>Resolver: IP: 142.250.190.46
+    Resolver-->>Browser: IP: 142.250.190.46
+    Browser->>Browser: Cache IP
+\`\`\``,
+  "availability vs consistency": `\`\`\`mermaid
+graph LR
+    subgraph CAP Theorem
+    C((Consistency)) --- A((Availability))
+    A --- P((Partition Tolerance))
+    P --- C
+    end
+    style P fill:#047857,stroke:#10b981
+\`\`\``
+};
+
 const URL = 'https://raw.githubusercontent.com/donnemartin/system-design-primer/master/README.md';
 const IMG_BASE_URL = 'https://raw.githubusercontent.com/donnemartin/system-design-primer/master/';
 
@@ -137,6 +181,15 @@ function parseAndGenerate(markdown) {
           title: `${currentModule.title} - Final Exam`,
           questions: questions
         };
+        
+        let titleKey = currentModule.title.toLowerCase();
+        // Inject mermaid diagram if available for this module
+        for (const key in DIAGRAMS) {
+            if (titleKey.includes(key) && currentModule.chapters.length > 0) {
+                currentModule.chapters[0].content.unshift(DIAGRAMS[key]);
+                break;
+            }
+        }
         modules.push(currentModule);
       }
       

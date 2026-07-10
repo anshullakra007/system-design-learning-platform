@@ -1,6 +1,7 @@
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import Exercise from './Exercise'
+import Mermaid from '../Mermaid'
 import { BookOpen, Microscope, Lightbulb } from 'lucide-react'
 
 export default function ModuleContent({ activeModule }) {
@@ -19,7 +20,19 @@ export default function ModuleContent({ activeModule }) {
           <h2 className="chapter-title">{chapter.title}</h2>
           
           <div className="chapter-content">
-            <ReactMarkdown rehypePlugins={[rehypeRaw]} components={{ a: ({node, ...props}) => <a target="_blank" rel="noopener noreferrer" {...props} /> }}>
+            <ReactMarkdown 
+              rehypePlugins={[rehypeRaw]} 
+              components={{ 
+                a: ({node, ...props}) => <a target="_blank" rel="noopener noreferrer" {...props} />,
+                code({node, inline, className, children, ...props}) {
+                  const match = /language-(\w+)/.exec(className || '')
+                  if (!inline && match && match[1] === 'mermaid') {
+                    return <Mermaid chart={String(children).replace(/\n$/, '')} />
+                  }
+                  return <code className={className} {...props}>{children}</code>
+                }
+              }}
+            >
               {chapter.content.join('\n\n')}
             </ReactMarkdown>
           </div>
@@ -31,7 +44,19 @@ export default function ModuleContent({ activeModule }) {
                 {chapter.deepDive.title}
               </h3>
               <div className="deep-dive-content">
-                <ReactMarkdown rehypePlugins={[rehypeRaw]} components={{ a: ({node, ...props}) => <a target="_blank" rel="noopener noreferrer" {...props} /> }}>
+                <ReactMarkdown 
+                  rehypePlugins={[rehypeRaw]} 
+                  components={{ 
+                    a: ({node, ...props}) => <a target="_blank" rel="noopener noreferrer" {...props} />,
+                    code({node, inline, className, children, ...props}) {
+                      const match = /language-(\w+)/.exec(className || '')
+                      if (!inline && match && match[1] === 'mermaid') {
+                        return <Mermaid chart={String(children).replace(/\n$/, '')} />
+                      }
+                      return <code className={className} {...props}>{children}</code>
+                    }
+                  }}
+                >
                   {chapter.deepDive.content.join('\n\n')}
                 </ReactMarkdown>
               </div>

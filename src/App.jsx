@@ -1,6 +1,7 @@
 import { useState, useEffect, Suspense, lazy } from 'react'
 import { auth } from './firebase'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Login from './components/Auth/Login'
 import Sidebar from './components/Navigation/Sidebar'
 
@@ -73,6 +74,21 @@ function App() {
   }
 
   const activeModule = modulesData.find(m => m.id === activeModuleId) || modulesData[0]
+  const activeIndex = modulesData.findIndex(m => m.id === activeModuleId)
+  
+  const handleNext = () => {
+    if (activeIndex < modulesData.length - 1) {
+      setActiveModuleId(modulesData[activeIndex + 1].id)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  const handlePrev = () => {
+    if (activeIndex > 0) {
+      setActiveModuleId(modulesData[activeIndex - 1].id)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 
   return (
     <div className="app-container">
@@ -98,6 +114,21 @@ function App() {
               {activeModule && activeModule.exam && (
                 <ExamEngine exam={activeModule.exam} />
               )}
+              
+              <div className="module-nav">
+                <button 
+                  onClick={handlePrev} 
+                  disabled={activeIndex === 0}
+                >
+                  <ChevronLeft size={18} /> Previous Module
+                </button>
+                <button 
+                  onClick={handleNext} 
+                  disabled={activeIndex === modulesData.length - 1}
+                >
+                  Next Module <ChevronRight size={18} />
+                </button>
+              </div>
             </Suspense>
           </main>
         </>
