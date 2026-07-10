@@ -48,25 +48,35 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
     }
   };
 
-  // Anti-Cheat: Visibility change listener
+  // Anti-Cheat: Visibility change listener with debounce
   useEffect(() => {
+    let visibilityTimeout;
+
     const handleVisibilityChange = () => {
       if (document.hidden && examState === 'running') {
-        setWarnings(prev => {
-          const newWarnings = prev + 1;
-          if (newWarnings >= 2) {
-            triggerFailure("You switched tabs multiple times. The exam is terminated.");
-          } else {
-            alert("WARNING: You left the exam window. One more violation will terminate the exam.");
-          }
-          return newWarnings;
-        });
+        // Debounce: wait 1.5 seconds before registering a violation
+        // This prevents brief system popups from failing the user.
+        visibilityTimeout = setTimeout(() => {
+          setWarnings(prev => {
+            const newWarnings = prev + 1;
+            if (newWarnings >= 2) {
+              triggerFailure("You switched tabs multiple times. The exam is terminated.");
+            } else {
+              alert("WARNING: You left the exam window. One more violation will terminate the exam.");
+            }
+            return newWarnings;
+          });
+        }, 1500);
+      } else {
+        // If they return to the tab before the 1.5s timeout, clear it
+        if (visibilityTimeout) clearTimeout(visibilityTimeout);
       }
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      if (visibilityTimeout) clearTimeout(visibilityTimeout);
     };
   }, [examState]);
 

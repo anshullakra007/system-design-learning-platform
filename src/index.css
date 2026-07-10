@@ -915,3 +915,35 @@ body {
   display: flex;
   gap: 1rem;
 }
+
+/* Production Polish: Global Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Production Polish: Viewport Locking & Performance Containment */
+html, body {
+  overflow-x: hidden;
+}
+.chapter-content, .deep-dive-content {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
+  overflow-x: hidden;
+  width: 100%;
+}
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}

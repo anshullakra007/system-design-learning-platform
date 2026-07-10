@@ -134,7 +134,15 @@ function parseAndGenerate(markdown) {
     if (!isContent) continue;
     
     // Rewrite image URLs to absolute URLs
-    line = line.replace(/\!\[(.*?)\]\((images\/.*?)\)/g, `![$1](${IMG_BASE_URL}$2)`);
+    line = line.replace(/!\[(.*?)\]\((images\/.*?)\)/g, `![$1](${IMG_BASE_URL}$2)`);
+
+    // Rewrite relative markdown links to absolute github repository links
+    line = line.replace(/\[([^\]]+)\]\((?!http)(.*?)\)/g, (match, p1, p2) => {
+        // Ignore anchor links starting with #
+        if (p2.startsWith('#')) return match;
+        // Append absolute github path
+        return `[${p1}](https://github.com/donnemartin/system-design-primer/tree/master/${p2})`;
+    });
 
     // Rewrite raw HTML image src
     line = line.replace(/src="(images\/.*?)"/g, `src="${IMG_BASE_URL}$1"`);

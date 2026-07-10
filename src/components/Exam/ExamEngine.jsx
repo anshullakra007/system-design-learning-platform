@@ -13,16 +13,14 @@ export default function ExamEngine({ exam }) {
     return localStorage.getItem(getStorageKey('submitted')) === 'true';
   })
 
-  // Sync to localStorage
-  useEffect(() => {
-    localStorage.setItem(getStorageKey('answers'), JSON.stringify(answers));
-    localStorage.setItem(getStorageKey('submitted'), submitted);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [answers, submitted, exam.title])
+  // Remove redundant useEffect to prevent race conditions during rapid clicks
+  // State is now synced synchronously inside the action handlers.
 
   const handleSelect = (qIndex, optionIndex) => {
     if (!submitted) {
-      setAnswers({ ...answers, [qIndex]: optionIndex })
+      const newAnswers = { ...answers, [qIndex]: optionIndex };
+      setAnswers(newAnswers);
+      localStorage.setItem(getStorageKey('answers'), JSON.stringify(newAnswers));
     }
   }
 
@@ -75,15 +73,14 @@ export default function ExamEngine({ exam }) {
         {!submitted ? (
           <button 
             className="btn-primary" 
-            onClick={() => setSubmitted(true)} 
-            disabled={Object.keys(answers).length !== exam.questions.length}
+            onClick={handleSubmit}
           >
             Submit Exam
           </button>
         ) : (
           <div className="exam-results">
             <h3>Final Score: {score} / {exam.questions.length}</h3>
-            <button className="btn-secondary" onClick={() => { setSubmitted(false); setAnswers({}); }}>
+            <button className="btn-secondary" onClick={() => { setSubmitted(false); setAnswers({}); localStorage.removeItem(getStorageKey('submitted')); localStorage.removeItem(getStorageKey('answers')); }}>
               <RotateCcw size={16} className="inline-icon" /> Retake Exam
             </button>
           </div>
