@@ -5,6 +5,7 @@ import CertificateView from './CertificateView';
 export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }) {
   const [examState, setExamState] = useState('setup'); // setup, running, failed, completed
   const [permissionError, setPermissionError] = useState('');
+  const [failReason, setFailReason] = useState('');
   const [warnings, setWarnings] = useState(0);
   const [timeLeft, setTimeLeft] = useState(tierData.timeLimit);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -99,9 +100,9 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
   }, []);
 
   const triggerFailure = (reason) => {
+    setFailReason(reason);
     setExamState('failed');
     stopMediaTracks();
-    alert("EXAM TERMINATED: " + reason);
   };
 
   const handleAnswer = (index) => {
@@ -158,6 +159,11 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
         <div className="proctor-card failed">
           <h2><XCircle size={32} color="#ef4444" /> Certification Failed</h2>
           <p>The anti-cheat mechanism was triggered. You have been locked out.</p>
+          {failReason && (
+            <div className="error-banner" style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', padding: '1rem', borderRadius: '4px', margin: '1.5rem 0', fontSize: '0.9rem', textAlign: 'left' }}>
+              <strong>Reason:</strong> {failReason}
+            </div>
+          )}
           <button className="secondary-btn" onClick={onExit}>Return to Dashboard</button>
         </div>
       </div>

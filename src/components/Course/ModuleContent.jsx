@@ -3,6 +3,7 @@ import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import rehypeRaw from 'rehype-raw'
+import rehypeSanitize from 'rehype-sanitize'
 import rehypeSlug from 'rehype-slug'
 import Exercise from './Exercise'
 import Mermaid from '../Mermaid'
@@ -26,7 +27,7 @@ export default function ModuleContent({ activeModule }) {
           <div className="chapter-content">
             <ReactMarkdown 
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw, rehypeSlug]} 
+              rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeSlug]} 
               components={{ 
                 table: ({_node, ...props}) => <div className="table-responsive"><table {...props} /></div>,
                 th: ({_node, ...props}) => <th className="md-th" {...props} />,
@@ -82,7 +83,7 @@ export default function ModuleContent({ activeModule }) {
               <div className="deep-dive-content">
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeRaw, rehypeSlug]} 
+                  rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeSlug]} 
                   components={{ 
                     table: ({_node, ...props}) => <div className="table-responsive"><table {...props} /></div>,
                     th: ({_node, ...props}) => <th className="md-th" {...props} />,

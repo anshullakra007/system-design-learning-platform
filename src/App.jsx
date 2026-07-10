@@ -128,21 +128,25 @@ function App() {
 
           <main className="main-content">
             <Suspense fallback={<LoadingSkeleton />}>
-              {activeModule && activeModule.isSpecial === 'practice' ? (
+              {!activeModule ? (
+                <div className="module-not-found" style={{ textAlign: 'center', padding: '4rem 2rem' }}>
+                  <h1 style={{ fontSize: '3rem', color: '#ef4444', marginBottom: '1rem' }}>404</h1>
+                  <h2 style={{ marginBottom: '1rem' }}>Module Not Found</h2>
+                  <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>The requested architecture module does not exist or has been moved.</p>
+                  <button className="primary-btn" onClick={() => setActiveModuleId(modulesData[0]?.id)}>Return to Dashboard</button>
+                </div>
+              ) : activeModule.isSpecial === 'practice' ? (
                 <PracticeProblems problems={practiceProblems} />
-              ) : activeModule && activeModule.isSpecial === 'proctored' ? (
+              ) : activeModule.isSpecial === 'proctored' ? (
                 <CertificationDashboard />
               ) : (
                 <>
-                  {activeModule && <ModuleContent activeModule={activeModule} />}
-                  
+                  <ModuleContent activeModule={activeModule} />
                   <hr className="exam-divider" />
-                  
-                  {activeModule && activeModule.exam && (
-                    <ExamEngine exam={activeModule.exam} />
-                  )}
+                  {activeModule.exam && <ExamEngine exam={activeModule.exam} />}
                 </>
               )}
+
               
               <div className="module-nav">
                 <button 
