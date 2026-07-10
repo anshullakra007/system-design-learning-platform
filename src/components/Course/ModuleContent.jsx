@@ -13,10 +13,12 @@ export default function ModuleContent({ activeModule }) {
   const sanitizeMarkdown = (rawText) => {
     if (!rawText) return '';
     let text = rawText;
+    // Ensure two newlines before a table header to satisfy strict parsers
+    text = text.replace(/([^\n])\n(\s*\|.*\|)/g, '$1\n\n$2');
     // Fix empty table headers that break remark-gfm
     text = text.replace(/\|\s*Question\s*\|\s*\|/g, '| Question | Solution |');
-    // Fix broken trailing pipes
-    text = text.replace(/\|\n\|/g, '|\n|');
+    // Fix broken table rows separated by double newlines due to array join
+    text = text.replace(/\|\n\n\|/g, '|\n|');
     return text;
   };
 
