@@ -34,7 +34,11 @@ export default function Sidebar({ modules, activeModuleId, setActiveModuleId }) 
             className={`module-link ${activeModuleId === mod.id ? 'active' : ''}`}
             onClick={() => setActiveModuleId(mod.id)}
           >
-            <span className="icon-wrapper">{mod.isSpecial ? <Target size={18} /> : getModuleIcon(mod.title)}</span>
+            <span className="icon-wrapper">
+              {mod.isSpecial === 'practice' ? <Target size={18} /> 
+               : mod.isSpecial === 'proctored' ? <Shield size={18} color="#ef4444" /> 
+               : getModuleIcon(mod.title)}
+            </span>
             <span className="module-title-text">{mod.isSpecial ? mod.title : mod.title.replace('Module ' + mod.id + ': ', '')}</span>
           </button>
         ))}

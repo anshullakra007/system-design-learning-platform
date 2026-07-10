@@ -10,6 +10,7 @@ import { practiceProblems } from './data/practice'
 const ModuleContent = lazy(() => import('./components/Course/ModuleContent'))
 const ExamEngine = lazy(() => import('./components/Exam/ExamEngine'))
 const PracticeProblems = lazy(() => import('./components/Course/PracticeProblems'))
+const CertificationDashboard = lazy(() => import('./components/Exam/CertificationDashboard'))
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -46,11 +47,16 @@ function App() {
       import('./data/modules.js')
         .then(data => {
           const loadedModules = data.modules;
-          // Append Certification Module
+          // Append Certification Modules
           loadedModules.push({
             id: 'certification-practice',
-            title: '🏆 Certification & Practice',
-            isSpecial: true
+            title: '🏆 Practice Problems',
+            isSpecial: 'practice'
+          });
+          loadedModules.push({
+            id: 'proctored-certification',
+            title: '🔒 Proctored Certification',
+            isSpecial: 'proctored'
           });
           setModulesData(loadedModules);
         })
@@ -119,8 +125,10 @@ function App() {
 
           <main className="main-content">
             <Suspense fallback={<div>Loading course material...</div>}>
-              {activeModule && activeModule.isSpecial ? (
+              {activeModule && activeModule.isSpecial === 'practice' ? (
                 <PracticeProblems problems={practiceProblems} />
+              ) : activeModule && activeModule.isSpecial === 'proctored' ? (
+                <CertificationDashboard />
               ) : (
                 <>
                   {activeModule && <ModuleContent activeModule={activeModule} />}
