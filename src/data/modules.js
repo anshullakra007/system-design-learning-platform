@@ -1,8 +1,536 @@
 export const modules = [
   {
     "id": 1,
+    "title": "How to approach a system design interview question",
+    "description": "Exhaustive guide and interview questions on How to approach a system design interview question",
+    "chapters": [
+      {
+        "title": "Overview",
+        "content": [
+          "",
+          "> How to tackle a system design interview question.",
+          "",
+          "The system design interview is an **open-ended conversation**.  You are expected to lead it.",
+          "",
+          "You can use the following steps to guide the discussion.  To help solidify this process, work through the [System design interview questions with solutions](#system-design-interview-questions-with-solutions) section using the following steps.",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Explain the core concepts and trade-offs of How to approach a system design interview question.",
+            "answer": "Review the How to approach a system design interview question module architecture and diagrams to solidify your understanding."
+          }
+        ]
+      },
+      {
+        "title": "Step 1: Outline use cases, constraints, and assumptions",
+        "content": [
+          "",
+          "Gather requirements and scope the problem.  Ask questions to clarify use cases and constraints.  Discuss assumptions.",
+          "",
+          "* Who is going to use it?",
+          "* How are they going to use it?",
+          "* How many users are there?",
+          "* What does the system do?",
+          "* What are the inputs and outputs of the system?",
+          "* How much data do we expect to handle?",
+          "* How many requests per second do we expect?",
+          "* What is the expected read to write ratio?",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Step 1: Outline use cases, constraints, and assumptions.",
+            "answer": "Refer to the diagrams and trade-offs of Step 1: Outline use cases, constraints, and assumptions as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Step 2: Create a high level design",
+        "content": [
+          "",
+          "Outline a high level design with all important components.",
+          "",
+          "* Sketch the main components and connections",
+          "* Justify your ideas",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Step 2: Create a high level design.",
+            "answer": "Refer to the diagrams and trade-offs of Step 2: Create a high level design as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Step 3: Design core components",
+        "content": [
+          "",
+          "Dive into details for each core component.  For example, if you were asked to [design a url shortening service](solutions/system_design/pastebin/README.md), discuss:",
+          "",
+          "* Generating and storing a hash of the full url",
+          "* [MD5](solutions/system_design/pastebin/README.md) and [Base62](solutions/system_design/pastebin/README.md)",
+          "* Hash collisions",
+          "* SQL or NoSQL",
+          "* Database schema",
+          "* Translating a hashed url to the full url",
+          "* Database lookup",
+          "* API and object-oriented design",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Step 3: Design core components.",
+            "answer": "Refer to the diagrams and trade-offs of Step 3: Design core components as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Step 4: Scale the design",
+        "content": [
+          "",
+          "Identify and address bottlenecks, given the constraints.  For example, do you need the following to address scalability issues?",
+          "",
+          "* Load balancer",
+          "* Horizontal scaling",
+          "* Caching",
+          "* Database sharding",
+          "",
+          "Discuss potential solutions and trade-offs.  Everything is a trade-off.  Address bottlenecks using [principles of scalable system design](#index-of-system-design-topics).",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Step 4: Scale the design.",
+            "answer": "Refer to the diagrams and trade-offs of Step 4: Scale the design as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Back-of-the-envelope calculations",
+        "content": [
+          "",
+          "You might be asked to do some estimates by hand.  Refer to the [Appendix](#appendix) for the following resources:",
+          "",
+          "* [Use back of the envelope calculations](http://highscalability.com/blog/2011/1/26/google-pro-tip-use-back-of-the-envelope-calculations-to-choo.html)",
+          "* [Powers of two table](#powers-of-two-table)",
+          "* [Latency numbers every programmer should know](#latency-numbers-every-programmer-should-know)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Back-of-the-envelope calculations.",
+            "answer": "Refer to the diagrams and trade-offs of Back-of-the-envelope calculations as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Source(s) and further reading",
+        "content": [
+          "",
+          "Check out the following links to get a better idea of what to expect:",
+          "",
+          "* [How to ace a systems design interview](https://web.archive.org/web/20210505130322/https://www.palantir.com/2011/10/how-to-rock-a-systems-design-interview/)",
+          "* [The system design interview](http://www.hiredintech.com/system-design)",
+          "* [Intro to Architecture and Systems Design Interviews](https://www.youtube.com/watch?v=ZgdS0EUmn70)",
+          "* [System design template](https://leetcode.com/discuss/career/229177/My-System-Design-Template)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Source(s) and further reading.",
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
+          }
+        ]
+      }
+    ],
+    "exam": {
+      "title": "How to approach a system design interview question - Final Exam",
+      "questions": [
+        {
+          "q": "What is the most critical trade-off in How to approach a system design interview question?",
+          "options": [
+            "Performance vs Latency",
+            "Consistency vs Availability",
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
+          ],
+          "correctIndex": 2,
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "title": "System design interview questions with solutions",
+    "description": "Exhaustive guide and interview questions on System design interview questions with solutions",
+    "chapters": [
+      {
+        "title": "Overview",
+        "content": [
+          "",
+          "> Common system design interview questions with sample discussions, code, and diagrams.",
+          ">",
+          "> Solutions linked to content in the `solutions/` folder.",
+          "",
+          "| Question | |",
+          "|---|---|",
+          "| Design Pastebin.com (or Bit.ly) | [Solution](solutions/system_design/pastebin/README.md) |",
+          "| Design the Twitter timeline and search (or Facebook feed and search) | [Solution](solutions/system_design/twitter/README.md) |",
+          "| Design a web crawler | [Solution](solutions/system_design/web_crawler/README.md) |",
+          "| Design Mint.com | [Solution](solutions/system_design/mint/README.md) |",
+          "| Design the data structures for a social network | [Solution](solutions/system_design/social_graph/README.md) |",
+          "| Design a key-value store for a search engine | [Solution](solutions/system_design/query_cache/README.md) |",
+          "| Design Amazon's sales ranking by category feature | [Solution](solutions/system_design/sales_rank/README.md) |",
+          "| Design a system that scales to millions of users on AWS | [Solution](solutions/system_design/scaling_aws/README.md) |",
+          "| Add a system design question | [Contribute](#contributing) |",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Explain the core concepts and trade-offs of System design interview questions with solutions.",
+            "answer": "Review the System design interview questions with solutions module architecture and diagrams to solidify your understanding."
+          }
+        ]
+      },
+      {
+        "title": "Design Pastebin.com (or Bit.ly)",
+        "content": [
+          "",
+          "[View exercise and solution](solutions/system_design/pastebin/README.md)",
+          "",
+          "![Imgur](https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/4edXG0T.png)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Design Pastebin: How would you generate a unique, short URL?",
+            "answer": "You can use an auto-incrementing integer ID from a database and encode it using Base62 (a-z, A-Z, 0-9) to generate a short 7-character hash."
+          }
+        ]
+      },
+      {
+        "title": "Design the Twitter timeline and search (or Facebook feed and search)",
+        "content": [
+          "",
+          "[View exercise and solution](solutions/system_design/twitter/README.md)",
+          "",
+          "![Imgur](https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/jrUBAF7.png)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Design Twitter: How do you handle the timeline of a user with millions of followers (e.g., Justin Bieber)?",
+            "answer": "You use a hybrid approach. For normal users, Fanout-on-write pushes tweets to followers. For celebrities, you use Fanout-on-load (pull), calculating their tweets into the timeline dynamically at read-time to avoid millions of writes."
+          }
+        ]
+      },
+      {
+        "title": "Design a web crawler",
+        "content": [
+          "",
+          "[View exercise and solution](solutions/system_design/web_crawler/README.md)",
+          "",
+          "![Imgur](https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/bWxPtQA.png)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Design a web crawler.",
+            "answer": "Refer to the diagrams and trade-offs of Design a web crawler as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Design Mint.com",
+        "content": [
+          "",
+          "[View exercise and solution](solutions/system_design/mint/README.md)",
+          "",
+          "![Imgur](https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/V5q57vU.png)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Design Mint.com.",
+            "answer": "Refer to the diagrams and trade-offs of Design Mint.com as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Design the data structures for a social network",
+        "content": [
+          "",
+          "[View exercise and solution](solutions/system_design/social_graph/README.md)",
+          "",
+          "![Imgur](https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/cdCv5g7.png)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Design the data structures for a social network.",
+            "answer": "Refer to the diagrams and trade-offs of Design the data structures for a social network as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Design a key-value store for a search engine",
+        "content": [
+          "",
+          "[View exercise and solution](solutions/system_design/query_cache/README.md)",
+          "",
+          "![Imgur](https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/4j99mhe.png)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Design a key-value store for a search engine.",
+            "answer": "Refer to the diagrams and trade-offs of Design a key-value store for a search engine as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Design Amazon's sales ranking by category feature",
+        "content": [
+          "",
+          "[View exercise and solution](solutions/system_design/sales_rank/README.md)",
+          "",
+          "![Imgur](https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/MzExP06.png)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Design Amazon's sales ranking by category feature.",
+            "answer": "Refer to the diagrams and trade-offs of Design Amazon's sales ranking by category feature as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Design a system that scales to millions of users on AWS",
+        "content": [
+          "",
+          "[View exercise and solution](solutions/system_design/scaling_aws/README.md)",
+          "",
+          "![Imgur](https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/jj3A5N8.png)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Design a system that scales to millions of users on AWS.",
+            "answer": "Refer to the diagrams and trade-offs of Design a system that scales to millions of users on AWS as discussed in the chapter."
+          }
+        ]
+      }
+    ],
+    "exam": {
+      "title": "System design interview questions with solutions - Final Exam",
+      "questions": [
+        {
+          "q": "When designing a URL Shortener (like Pastebin/Bit.ly), which hashing strategy prevents collisions while maintaining a short URL length?",
+          "options": [
+            "MD5 with Base62 Encoding",
+            "SHA-256",
+            "Bcrypt",
+            "A simple sequential ID generator without encoding"
+          ],
+          "correctIndex": 0,
+          "explanation": "Base62 encoding (a-z, A-Z, 0-9) of an MD5 hash (or even just base62 encoding a unique integer ID) creates a very short, URL-safe string. MD5 is fast and sufficient for this non-cryptographic use case."
+        },
+        {
+          "q": "In a social network (like Twitter) timeline generation, what is the 'Fanout' approach?",
+          "options": [
+            "Dynamically calculating the timeline every time a user refreshes the page.",
+            "Pre-computing the timeline by pushing a new tweet to all followers' cached timelines upon creation.",
+            "Deleting old tweets to save database storage.",
+            "A load balancing algorithm that fans requests out to all servers."
+          ],
+          "correctIndex": 1,
+          "explanation": "Fanout-on-write pushes the new tweet to the pre-computed timeline caches of all followers. This makes reads O(1) and extremely fast, which is critical for read-heavy systems."
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "title": "Object-oriented design interview questions with solutions",
+    "description": "Exhaustive guide and interview questions on Object-oriented design interview questions with solutions",
+    "chapters": [
+      {
+        "title": "Overview",
+        "content": [
+          "",
+          "> Common object-oriented design interview questions with sample discussions, code, and diagrams.",
+          ">",
+          "> Solutions linked to content in the `solutions/` folder.",
+          "",
+          ">**Note: This section is under development**",
+          "",
+          "| Question | |",
+          "|---|---|",
+          "| Design a hash map | [Solution](solutions/object_oriented_design/hash_table/hash_map.ipynb)  |",
+          "| Design a least recently used cache | [Solution](solutions/object_oriented_design/lru_cache/lru_cache.ipynb)  |",
+          "| Design a call center | [Solution](solutions/object_oriented_design/call_center/call_center.ipynb)  |",
+          "| Design a deck of cards | [Solution](solutions/object_oriented_design/deck_of_cards/deck_of_cards.ipynb)  |",
+          "| Design a parking lot | [Solution](solutions/object_oriented_design/parking_lot/parking_lot.ipynb)  |",
+          "| Design a chat server | [Solution](solutions/object_oriented_design/online_chat/online_chat.ipynb)  |",
+          "| Design a circular array | [Contribute](#contributing)  |",
+          "| Add an object-oriented design question | [Contribute](#contributing) |",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Explain the core concepts and trade-offs of Object-oriented design interview questions with solutions.",
+            "answer": "Review the Object-oriented design interview questions with solutions module architecture and diagrams to solidify your understanding."
+          }
+        ]
+      }
+    ],
+    "exam": {
+      "title": "Object-oriented design interview questions with solutions - Final Exam",
+      "questions": [
+        {
+          "q": "What is the most critical trade-off in Object-oriented design interview questions with solutions?",
+          "options": [
+            "Performance vs Latency",
+            "Consistency vs Availability",
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
+          ],
+          "correctIndex": 2,
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "title": "System design topics: start here",
+    "description": "Exhaustive guide and interview questions on System design topics: start here",
+    "chapters": [
+      {
+        "title": "Overview",
+        "content": [
+          "",
+          "New to system design?",
+          "",
+          "First, you'll need a basic understanding of common principles, learning about what they are, how they are used, and their pros and cons.",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Explain the core concepts and trade-offs of System design topics: start here.",
+            "answer": "Review the System design topics: start here module architecture and diagrams to solidify your understanding."
+          }
+        ]
+      },
+      {
+        "title": "Step 1: Review the scalability video lecture",
+        "content": [
+          "",
+          "[Scalability Lecture at Harvard](https://www.youtube.com/watch?v=-W9F__D3oY4)",
+          "",
+          "* Topics covered:",
+          "* Vertical scaling",
+          "* Horizontal scaling",
+          "* Caching",
+          "* Load balancing",
+          "* Database replication",
+          "* Database partitioning",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Step 1: Review the scalability video lecture.",
+            "answer": "Refer to the diagrams and trade-offs of Step 1: Review the scalability video lecture as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Step 2: Review the scalability article",
+        "content": [
+          "",
+          "[Scalability](https://web.archive.org/web/20221030091841/http://www.lecloud.net/tagged/scalability/chrono)",
+          "",
+          "* Topics covered:",
+          "* [Clones](https://web.archive.org/web/20220530193911/https://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones)",
+          "* [Databases](https://web.archive.org/web/20220602114024/https://www.lecloud.net/post/7994751381/scalability-for-dummies-part-2-database)",
+          "* [Caches](https://web.archive.org/web/20230126233752/https://www.lecloud.net/post/9246290032/scalability-for-dummies-part-3-cache)",
+          "* [Asynchronism](https://web.archive.org/web/20220926171507/https://www.lecloud.net/post/9699762917/scalability-for-dummies-part-4-asynchronism)",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Step 2: Review the scalability article.",
+            "answer": "Refer to the diagrams and trade-offs of Step 2: Review the scalability article as discussed in the chapter."
+          }
+        ]
+      },
+      {
+        "title": "Next steps",
+        "content": [
+          "",
+          "Next, we'll look at high-level trade-offs:",
+          "",
+          "* **Performance** vs **scalability**",
+          "* **Latency** vs **throughput**",
+          "* **Availability** vs **consistency**",
+          "",
+          "Keep in mind that **everything is a trade-off**.",
+          "",
+          "Then we'll dive into more specific topics such as DNS, CDNs, and load balancers.",
+          ""
+        ],
+        "deepDive": null,
+        "exercises": [
+          {
+            "question": "Describe the mechanism behind Next steps.",
+            "answer": "Refer to the diagrams and trade-offs of Next steps as discussed in the chapter."
+          }
+        ]
+      }
+    ],
+    "exam": {
+      "title": "System design topics: start here - Final Exam",
+      "questions": [
+        {
+          "q": "What is the most critical trade-off in System design topics: start here?",
+          "options": [
+            "Performance vs Latency",
+            "Consistency vs Availability",
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
+          ],
+          "correctIndex": 2,
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
     "title": "Performance vs scalability",
-    "description": "Exhaustive guide on Performance vs scalability",
+    "description": "Exhaustive guide and interview questions on Performance vs scalability",
     "chapters": [
       {
         "title": "Overview",
@@ -19,8 +547,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Performance vs scalability.",
-            "answer": "Review the Performance vs scalability module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Performance vs scalability.",
+            "answer": "Review the Performance vs scalability module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -36,32 +564,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Performance vs scalability - Exam",
+      "title": "Performance vs scalability - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Performance vs scalability?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 2,
+    "id": 6,
     "title": "Latency vs throughput",
-    "description": "Exhaustive guide on Latency vs throughput",
+    "description": "Exhaustive guide and interview questions on Latency vs throughput",
     "chapters": [
       {
         "title": "Overview",
@@ -77,8 +605,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Latency vs throughput.",
-            "answer": "Review the Latency vs throughput module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Latency vs throughput.",
+            "answer": "Review the Latency vs throughput module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -93,32 +621,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Latency vs throughput - Exam",
+      "title": "Latency vs throughput - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Latency vs throughput?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 3,
+    "id": 7,
     "title": "Availability vs consistency",
-    "description": "Exhaustive guide on Availability vs consistency",
+    "description": "Exhaustive guide and interview questions on Availability vs consistency",
     "chapters": [
       {
         "title": "CAP theorem",
@@ -156,7 +684,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind CAP theorem.",
-            "answer": "The answer lies within the trade-offs of CAP theorem as discussed."
+            "answer": "Refer to the diagrams and trade-offs of CAP theorem as discussed in the chapter."
           }
         ]
       },
@@ -174,32 +702,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Availability vs consistency - Exam",
+      "title": "Availability vs consistency - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Availability vs consistency?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 4,
+    "id": 8,
     "title": "Consistency patterns",
-    "description": "Exhaustive guide on Consistency patterns",
+    "description": "Exhaustive guide and interview questions on Consistency patterns",
     "chapters": [
       {
         "title": "Overview",
@@ -211,8 +739,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Consistency patterns.",
-            "answer": "Review the Consistency patterns module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Consistency patterns.",
+            "answer": "Review the Consistency patterns module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -229,7 +757,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Weak consistency.",
-            "answer": "The answer lies within the trade-offs of Weak consistency as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Weak consistency as discussed in the chapter."
           }
         ]
       },
@@ -246,7 +774,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Eventual consistency.",
-            "answer": "The answer lies within the trade-offs of Eventual consistency as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Eventual consistency as discussed in the chapter."
           }
         ]
       },
@@ -263,7 +791,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Strong consistency.",
-            "answer": "The answer lies within the trade-offs of Strong consistency as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Strong consistency as discussed in the chapter."
           }
         ]
       },
@@ -278,32 +806,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Consistency patterns - Exam",
+      "title": "Consistency patterns - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Consistency patterns?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 5,
+    "id": 9,
     "title": "Availability patterns",
-    "description": "Exhaustive guide on Availability patterns",
+    "description": "Exhaustive guide and interview questions on Availability patterns",
     "chapters": [
       {
         "title": "Overview",
@@ -315,8 +843,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Availability patterns.",
-            "answer": "Review the Availability patterns module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Availability patterns.",
+            "answer": "Review the Availability patterns module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -348,7 +876,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Fail-over.",
-            "answer": "The answer lies within the trade-offs of Fail-over as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Fail-over as discussed in the chapter."
           }
         ]
       },
@@ -364,7 +892,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Disadvantage(s): failover.",
-            "answer": "The answer lies within the trade-offs of Disadvantage(s): failover as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Disadvantage(s): failover as discussed in the chapter."
           }
         ]
       },
@@ -387,7 +915,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Replication.",
-            "answer": "The answer lies within the trade-offs of Replication as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Replication as discussed in the chapter."
           }
         ]
       },
@@ -447,32 +975,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Availability in numbers.",
-            "answer": "The answer lies within the trade-offs of Availability in numbers as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Availability in numbers as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Availability patterns - Exam",
+      "title": "Availability patterns - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Availability patterns?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 6,
+    "id": 10,
     "title": "Domain name system",
-    "description": "Exhaustive guide on Domain name system",
+    "description": "Exhaustive guide and interview questions on Domain name system",
     "chapters": [
       {
         "title": "Overview",
@@ -506,8 +1034,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Domain name system.",
-            "answer": "Review the Domain name system module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Domain name system.",
+            "answer": "Review the Domain name system module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -524,7 +1052,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Disadvantage(s): DNS.",
-            "answer": "The answer lies within the trade-offs of Disadvantage(s): DNS as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Disadvantage(s): DNS as discussed in the chapter."
           }
         ]
       },
@@ -541,32 +1069,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Domain name system - Exam",
+      "title": "Domain name system - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Domain name system?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 7,
+    "id": 11,
     "title": "Content delivery network",
-    "description": "Exhaustive guide on Content delivery network",
+    "description": "Exhaustive guide and interview questions on Content delivery network",
     "chapters": [
       {
         "title": "Overview",
@@ -589,8 +1117,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Content delivery network.",
-            "answer": "Review the Content delivery network module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Content delivery network.",
+            "answer": "Review the Content delivery network module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -607,7 +1135,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Push CDNs.",
-            "answer": "The answer lies within the trade-offs of Push CDNs as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Push CDNs as discussed in the chapter."
           }
         ]
       },
@@ -626,7 +1154,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Pull CDNs.",
-            "answer": "The answer lies within the trade-offs of Pull CDNs as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Pull CDNs as discussed in the chapter."
           }
         ]
       },
@@ -643,7 +1171,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Disadvantage(s): CDN.",
-            "answer": "The answer lies within the trade-offs of Disadvantage(s): CDN as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Disadvantage(s): CDN as discussed in the chapter."
           }
         ]
       },
@@ -660,32 +1188,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Content delivery network - Exam",
+      "title": "Content delivery network - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Content delivery network?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 8,
+    "id": 12,
     "title": "Load balancer",
-    "description": "Exhaustive guide on Load balancer",
+    "description": "Exhaustive guide and interview questions on Load balancer",
     "chapters": [
       {
         "title": "Overview",
@@ -726,8 +1254,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Load balancer.",
-            "answer": "Review the Load balancer module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Load balancer.",
+            "answer": "Review the Load balancer module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -742,7 +1270,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Layer 4 load balancing.",
-            "answer": "The answer lies within the trade-offs of Layer 4 load balancing as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Layer 4 load balancing as discussed in the chapter."
           }
         ]
       },
@@ -759,7 +1287,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Layer 7 load balancing.",
-            "answer": "The answer lies within the trade-offs of Layer 7 load balancing as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Layer 7 load balancing as discussed in the chapter."
           }
         ]
       },
@@ -784,7 +1312,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Horizontal scaling.",
-            "answer": "The answer lies within the trade-offs of Horizontal scaling as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Horizontal scaling as discussed in the chapter."
           }
         ]
       },
@@ -801,7 +1329,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Disadvantage(s): load balancer.",
-            "answer": "The answer lies within the trade-offs of Disadvantage(s): load balancer as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Disadvantage(s): load balancer as discussed in the chapter."
           }
         ]
       },
@@ -822,32 +1350,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Load balancer - Exam",
+      "title": "Load balancer - Final Exam",
       "questions": [
         {
-          "q": "What is the most critical trade-off in Load balancer?",
+          "q": "What is the primary difference between Layer 4 and Layer 7 load balancing?",
           "options": [
-            "Performance vs Latency",
-            "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "Layer 4 routes based on IP/Port; Layer 7 routes based on application data like HTTP headers.",
+            "Layer 4 is slower than Layer 7 because it deeply inspects packets.",
+            "Layer 7 only supports UDP, while Layer 4 supports TCP.",
+            "There is no difference; they are just different hardware models."
           ],
-          "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "correctIndex": 0,
+          "explanation": "Layer 4 looks at transport layer info (IP, Port). Layer 7 looks at application layer info (HTTP headers, cookies) allowing for smarter routing at the cost of computation."
         }
       ]
     }
   },
   {
-    "id": 9,
+    "id": 13,
     "title": "Reverse proxy (web server)",
-    "description": "Exhaustive guide on Reverse proxy (web server)",
+    "description": "Exhaustive guide and interview questions on Reverse proxy (web server)",
     "chapters": [
       {
         "title": "Overview",
@@ -880,8 +1408,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Reverse proxy (web server).",
-            "answer": "Review the Reverse proxy (web server) module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Reverse proxy (web server).",
+            "answer": "Review the Reverse proxy (web server) module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -898,7 +1426,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Load balancer vs reverse proxy.",
-            "answer": "The answer lies within the trade-offs of Load balancer vs reverse proxy as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Load balancer vs reverse proxy as discussed in the chapter."
           }
         ]
       },
@@ -914,7 +1442,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Disadvantage(s): reverse proxy.",
-            "answer": "The answer lies within the trade-offs of Disadvantage(s): reverse proxy as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Disadvantage(s): reverse proxy as discussed in the chapter."
           }
         ]
       },
@@ -932,32 +1460,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Reverse proxy (web server) - Exam",
+      "title": "Reverse proxy (web server) - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Reverse proxy (web server)?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 10,
+    "id": 14,
     "title": "Application layer",
-    "description": "Exhaustive guide on Application layer",
+    "description": "Exhaustive guide and interview questions on Application layer",
     "chapters": [
       {
         "title": "Overview",
@@ -977,8 +1505,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Application layer.",
-            "answer": "Review the Application layer module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Application layer.",
+            "answer": "Review the Application layer module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -995,7 +1523,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Microservices.",
-            "answer": "The answer lies within the trade-offs of Microservices as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Microservices as discussed in the chapter."
           }
         ]
       },
@@ -1010,7 +1538,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Service Discovery.",
-            "answer": "The answer lies within the trade-offs of Service Discovery as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Service Discovery as discussed in the chapter."
           }
         ]
       },
@@ -1026,7 +1554,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Disadvantage(s): application layer.",
-            "answer": "The answer lies within the trade-offs of Disadvantage(s): application layer as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Disadvantage(s): application layer as discussed in the chapter."
           }
         ]
       },
@@ -1045,32 +1573,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Application layer - Exam",
+      "title": "Application layer - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Application layer?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 11,
+    "id": 15,
     "title": "Database",
-    "description": "Exhaustive guide on Database",
+    "description": "Exhaustive guide and interview questions on Database",
     "chapters": [
       {
         "title": "Overview",
@@ -1086,8 +1614,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Database.",
-            "answer": "Review the Database module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Database.",
+            "answer": "Review the Database module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -1276,7 +1804,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Relational database management system (RDBMS).",
-            "answer": "The answer lies within the trade-offs of Relational database management system (RDBMS) as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Relational database management system (RDBMS) as discussed in the chapter."
           }
         ]
       },
@@ -1389,7 +1917,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind NoSQL.",
-            "answer": "The answer lies within the trade-offs of NoSQL as discussed."
+            "answer": "Refer to the diagrams and trade-offs of NoSQL as discussed in the chapter."
           }
         ]
       },
@@ -1442,32 +1970,43 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind SQL or NoSQL.",
-            "answer": "The answer lies within the trade-offs of SQL or NoSQL as discussed."
+            "answer": "Refer to the diagrams and trade-offs of SQL or NoSQL as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Database - Exam",
+      "title": "Database - Final Exam",
       "questions": [
         {
-          "q": "What is the most critical trade-off in Database?",
+          "q": "Which database replication strategy is best suited for write-heavy workloads where eventual consistency is acceptable?",
           "options": [
-            "Performance vs Latency",
-            "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "Master-Slave Replication",
+            "Master-Master Replication",
+            "Sharding",
+            "Denormalization"
+          ],
+          "correctIndex": 1,
+          "explanation": "Master-Master replication allows writes to multiple nodes, improving write throughput, although it requires conflict resolution and often results in eventual consistency."
+        },
+        {
+          "q": "What is a major disadvantage of database federation (functional partitioning)?",
+          "options": [
+            "It increases replication lag.",
+            "It requires a single central master to serialize all writes.",
+            "It makes joining data across different databases significantly more complex.",
+            "It reduces the amount of data that can fit in memory."
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "Federation splits databases by function (e.g., users, forums). Joining data that lives on completely different database servers requires complex application logic."
         }
       ]
     }
   },
   {
-    "id": 12,
+    "id": 16,
     "title": "Cache",
-    "description": "Exhaustive guide on Cache",
+    "description": "Exhaustive guide and interview questions on Cache",
     "chapters": [
       {
         "title": "Overview",
@@ -1487,8 +2026,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Cache.",
-            "answer": "Review the Cache module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Cache.",
+            "answer": "Review the Cache module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -1503,7 +2042,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Client caching.",
-            "answer": "The answer lies within the trade-offs of Client caching as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Client caching as discussed in the chapter."
           }
         ]
       },
@@ -1518,7 +2057,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind CDN caching.",
-            "answer": "The answer lies within the trade-offs of CDN caching as discussed."
+            "answer": "Refer to the diagrams and trade-offs of CDN caching as discussed in the chapter."
           }
         ]
       },
@@ -1533,7 +2072,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Web server caching.",
-            "answer": "The answer lies within the trade-offs of Web server caching as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Web server caching as discussed in the chapter."
           }
         ]
       },
@@ -1548,7 +2087,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Database caching.",
-            "answer": "The answer lies within the trade-offs of Database caching as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Database caching as discussed in the chapter."
           }
         ]
       },
@@ -1577,7 +2116,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Application caching.",
-            "answer": "The answer lies within the trade-offs of Application caching as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Application caching as discussed in the chapter."
           }
         ]
       },
@@ -1595,7 +2134,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Caching at the database query level.",
-            "answer": "The answer lies within the trade-offs of Caching at the database query level as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Caching at the database query level as discussed in the chapter."
           }
         ]
       },
@@ -1620,7 +2159,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Caching at the object level.",
-            "answer": "The answer lies within the trade-offs of Caching at the object level as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Caching at the object level as discussed in the chapter."
           }
         ]
       },
@@ -1743,7 +2282,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind When to update the cache.",
-            "answer": "The answer lies within the trade-offs of When to update the cache as discussed."
+            "answer": "Refer to the diagrams and trade-offs of When to update the cache as discussed in the chapter."
           }
         ]
       },
@@ -1760,7 +2299,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Disadvantage(s): cache.",
-            "answer": "The answer lies within the trade-offs of Disadvantage(s): cache as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Disadvantage(s): cache as discussed in the chapter."
           }
         ]
       },
@@ -1781,32 +2320,43 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Cache - Exam",
+      "title": "Cache - Final Exam",
       "questions": [
         {
-          "q": "What is the most critical trade-off in Cache?",
+          "q": "In a Cache-Aside (Lazy Loading) strategy, what happens when there is a cache miss?",
           "options": [
-            "Performance vs Latency",
-            "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "The cache automatically fetches data from the database.",
+            "The application fetches data from the database and updates the cache.",
+            "The application throws an error and falls back to a replica.",
+            "The database asynchronously pushes the missing data to the cache."
           ],
-          "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "correctIndex": 1,
+          "explanation": "In Cache-Aside, the cache doesn't interact with the DB directly. The application is responsible for querying the DB on a miss and then populating the cache."
+        },
+        {
+          "q": "Which caching strategy is most vulnerable to data loss if the cache node crashes before persisting to the database?",
+          "options": [
+            "Write-Through",
+            "Write-Behind (Write-Back)",
+            "Cache-Aside",
+            "Refresh-Ahead"
+          ],
+          "correctIndex": 1,
+          "explanation": "Write-Behind improves write performance by asynchronously writing to the DB. If the cache crashes before the async write completes, the data is lost."
         }
       ]
     }
   },
   {
-    "id": 13,
+    "id": 17,
     "title": "Asynchronism",
-    "description": "Exhaustive guide on Asynchronism",
+    "description": "Exhaustive guide and interview questions on Asynchronism",
     "chapters": [
       {
         "title": "Overview",
@@ -1824,8 +2374,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Asynchronism.",
-            "answer": "Review the Asynchronism module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Asynchronism.",
+            "answer": "Review the Asynchronism module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -1851,7 +2401,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Message queues.",
-            "answer": "The answer lies within the trade-offs of Message queues as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Message queues as discussed in the chapter."
           }
         ]
       },
@@ -1868,7 +2418,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Task queues.",
-            "answer": "The answer lies within the trade-offs of Task queues as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Task queues as discussed in the chapter."
           }
         ]
       },
@@ -1883,7 +2433,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Back pressure.",
-            "answer": "The answer lies within the trade-offs of Back pressure as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Back pressure as discussed in the chapter."
           }
         ]
       },
@@ -1898,7 +2448,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Disadvantage(s): asynchronism.",
-            "answer": "The answer lies within the trade-offs of Disadvantage(s): asynchronism as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Disadvantage(s): asynchronism as discussed in the chapter."
           }
         ]
       },
@@ -1916,32 +2466,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Asynchronism - Exam",
+      "title": "Asynchronism - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Asynchronism?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 14,
+    "id": 18,
     "title": "Communication",
-    "description": "Exhaustive guide on Communication",
+    "description": "Exhaustive guide and interview questions on Communication",
     "chapters": [
       {
         "title": "Overview",
@@ -1957,8 +2507,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Communication.",
-            "answer": "Review the Communication module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Communication.",
+            "answer": "Review the Communication module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -1996,7 +2546,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Hypertext transfer protocol (HTTP).",
-            "answer": "The answer lies within the trade-offs of Hypertext transfer protocol (HTTP) as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Hypertext transfer protocol (HTTP) as discussed in the chapter."
           }
         ]
       },
@@ -2031,7 +2581,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Transmission control protocol (TCP).",
-            "answer": "The answer lies within the trade-offs of Transmission control protocol (TCP) as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Transmission control protocol (TCP) as discussed in the chapter."
           }
         ]
       },
@@ -2074,7 +2624,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind User datagram protocol (UDP).",
-            "answer": "The answer lies within the trade-offs of User datagram protocol (UDP) as discussed."
+            "answer": "Refer to the diagrams and trade-offs of User datagram protocol (UDP) as discussed in the chapter."
           }
         ]
       },
@@ -2137,7 +2687,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Remote procedure call (RPC).",
-            "answer": "The answer lies within the trade-offs of Remote procedure call (RPC) as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Remote procedure call (RPC) as discussed in the chapter."
           }
         ]
       },
@@ -2180,7 +2730,7 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Representational state transfer (REST).",
-            "answer": "The answer lies within the trade-offs of Representational state transfer (REST) as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Representational state transfer (REST) as discussed in the chapter."
           }
         ]
       },
@@ -2221,32 +2771,32 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind RPC and REST calls comparison.",
-            "answer": "The answer lies within the trade-offs of RPC and REST calls comparison as discussed."
+            "answer": "Refer to the diagrams and trade-offs of RPC and REST calls comparison as discussed in the chapter."
           }
         ]
       }
     ],
     "exam": {
-      "title": "Communication - Exam",
+      "title": "Communication - Final Exam",
       "questions": [
         {
           "q": "What is the most critical trade-off in Communication?",
           "options": [
             "Performance vs Latency",
             "Consistency vs Availability",
-            "There is no single correct answer; it depends on the use case.",
-            "SQL vs NoSQL"
+            "It depends entirely on the specific system requirements and constraints.",
+            "Cost vs Storage"
           ],
           "correctIndex": 2,
-          "explanation": "System design is entirely about understanding trade-offs for specific use cases."
+          "explanation": "System design has no silver bullets; it is entirely about understanding trade-offs for specific use cases."
         }
       ]
     }
   },
   {
-    "id": 15,
+    "id": 19,
     "title": "Security",
-    "description": "Exhaustive guide on Security",
+    "description": "Exhaustive guide and interview questions on Security",
     "chapters": [
       {
         "title": "Overview",
@@ -2265,8 +2815,8 @@ export const modules = [
         "deepDive": null,
         "exercises": [
           {
-            "question": "Explain the core concepts of Security.",
-            "answer": "Review the Security module to solidify your understanding of these concepts."
+            "question": "Explain the core concepts and trade-offs of Security.",
+            "answer": "Review the Security module architecture and diagrams to solidify your understanding."
           }
         ]
       },
@@ -2283,10 +2833,26 @@ export const modules = [
         "exercises": [
           {
             "question": "Describe the mechanism behind Source(s) and further reading.",
-            "answer": "The answer lies within the trade-offs of Source(s) and further reading as discussed."
+            "answer": "Refer to the diagrams and trade-offs of Source(s) and further reading as discussed in the chapter."
           }
         ]
       }
-    ]
+    ],
+    "exam": {
+      "title": "Security - Final Exam",
+      "questions": [
+        {
+          "q": "What is the most critical trade-off in Security?",
+          "options": [
+            "Performance vs Latency",
+            "Consistency vs Availability",
+            "It depends entirely on the specific system requirements.",
+            "SQL vs NoSQL"
+          ],
+          "correctIndex": 2,
+          "explanation": "System design is about choosing the right trade-off."
+        }
+      ]
+    }
   }
 ];
