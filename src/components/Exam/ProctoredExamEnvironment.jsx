@@ -11,6 +11,7 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
+  const [isBlurred, setIsBlurred] = useState(false);
 
   const videoRef = useRef(null);
   const streamRef = useRef(null);
@@ -31,10 +32,6 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
     try {
       // Request Camera
       streamRef.current = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-      if (videoRef.current) {
-        videoRef.current.srcObject = streamRef.current;
-      }
-      
       // Request Screen
       displayStreamRef.current = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false });
       
@@ -48,34 +45,54 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
       setPermissionError("Hardware access denied. You must explicitly allow both Webcam and Screen Sharing to begin the certification.");
     }
   };
+  // Attach WebRTC stream when videoRef mounts
+  useEffect(() => {
+    if (examState === 'running' && videoRef.current && streamRef.current) {
+      videoRef.current.srcObject = streamRef.current;
+    }
+  }, [examState]);
 
-  // Anti-Cheat: Visibility change listener with debounce
+  // Anti-Cheat: Visibility and Blur listener
   useEffect(() => {
     let visibilityTimeout;
 
-    const handleVisibilityChange = () => {
-      if (document.hidden && examState === 'running') {
-        // Debounce: wait 1.5 seconds before registering a violation
-        // This prevents brief system popups from failing the user.
+    const handleFocusLoss = () => {
+      if (examState === 'running') {
+        setIsBlurred(true);
         visibilityTimeout = setTimeout(() => {
           setWarnings(prev => {
             const newWarnings = prev + 1;
             if (newWarnings >= 2) {
               triggerFailure("You switched tabs multiple times. The exam is terminated.");
-            } else {
-              alert("WARNING: You left the exam window. One more violation will terminate the exam.");
             }
             return newWarnings;
           });
         }, 1500);
-      } else {
-        // If they return to the tab before the 1.5s timeout, clear it
+      }
+    };
+
+    const handleFocusGain = () => {
+      if (examState === 'running') {
+        setIsBlurred(false);
         if (visibilityTimeout) clearTimeout(visibilityTimeout);
       }
     };
 
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        handleFocusLoss();
+      } else {
+        handleFocusGain();
+      }
+    };
+
+    window.addEventListener('blur', handleFocusLoss);
+    window.addEventListener('focus', handleFocusGain);
     document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
+      window.removeEventListener('blur', handleFocusLoss);
+      window.removeEventListener('focus', handleFocusGain);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (visibilityTimeout) clearTimeout(visibilityTimeout);
     };
@@ -189,8 +206,16 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
   const q = tierData.questions[currentQuestion];
 
   return (
-    <div className="exam-environment">
-      <div className="exam-header">
+    <>
+      {isBlurred && examState === 'running' && (
+        <div className="anti-cheat-overlay">
+          <AlertTriangle size={64} color="#ef4444" style={{ marginBottom: '1.5rem' }} />
+          <h2>Tab Switching Detected</h2>
+          <p>Return to the exam immediately. This violation has been recorded.</p>
+        </div>
+      )}
+      <div className="exam-environment" style={{ filter: isBlurred ? 'blur(10px)' : 'none', transition: 'filter 0.2s ease' }}>
+        <div className="exam-header">
         <div className="timer-display">
           <Clock size={24} /> {formatTime(timeLeft)}
         </div>
@@ -244,6 +269,7 @@ export default function ProctoredExamEnvironment({ tierData, tierLevel, onExit }
         <video ref={videoRef} autoPlay muted playsInline className="webcam-preview"></video>
       </div>
     </div>
+    </>
   );
 }
 

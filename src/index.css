@@ -94,7 +94,7 @@ body {
 .main-content {
   margin-left: 280px;
   flex: 1;
-  padding: 4rem 6rem 150px 6rem; /* 150px bottom padding for PiP / banner clearance */
+  padding: 4rem 6rem 200px 6rem; /* 200px bottom padding for PiP / banner clearance */
   max-width: 1200px;
 }
 
@@ -130,7 +130,7 @@ body {
   flex-direction: column;
   gap: 2rem;
   margin-bottom: 6rem;
-  max-width: 70ch;
+  max-width: 800px;
   margin: 0 auto; /* Center documentation for optimal reading */
 }
 
@@ -288,7 +288,7 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 6px;
   cursor: pointer;
-  background: var(--bg-color);
+  background: #111111;
   transition: all 0.2s ease;
   color: #a0a0a0;
   display: flex;
@@ -1023,9 +1023,38 @@ html, body {
   width: 240px;
   height: 180px;
   background: #000;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border-color);
   z-index: 100;
   object-fit: cover;
+}
+
+/* Anti-Cheat Overlay */
+.anti-cheat-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ef4444;
+  text-align: center;
+}
+
+.anti-cheat-overlay h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #ef4444;
+}
+
+.anti-cheat-overlay p {
+  font-size: 1.5rem;
+  color: #e5e5e5;
 }
