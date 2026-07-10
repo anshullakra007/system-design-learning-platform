@@ -2,47 +2,26 @@ import fs from 'fs';
 import https from 'https';
 
 const DIAGRAMS = {
-  "content delivery network": `\`\`\`mermaid
-graph TD
-    Client1[User - Europe] -->|Requests Video| Edge1[CDN Edge Server - Frankfurt]
-    Client2[User - Asia] -->|Requests Video| Edge2[CDN Edge Server - Tokyo]
-    Edge1 -.->|Cache Miss| Origin[(Origin Server - US East)]
-    Edge2 -.->|Cache Miss| Origin
-    Origin -.->|Video Chunk| Edge1
-    Origin -.->|Video Chunk| Edge2
-    Edge1 -->|Cache Hit| Client3[User 2 - Europe]
-    style Edge1 fill:#1e3a8a,stroke:#3b82f6
-    style Edge2 fill:#1e3a8a,stroke:#3b82f6
-    style Origin fill:#991b1b,stroke:#ef4444
-\`\`\``,
-  "domain name system": `\`\`\`mermaid
-sequenceDiagram
-    participant User
-    participant Browser
-    participant Resolver as DNS Resolver
-    participant Root as Root Server
-    participant TLD as TLD Server
-    participant Auth as Auth Nameserver
-    User->>Browser: Type google.com
-    Browser->>Resolver: Where is google.com?
-    Resolver->>Root: Query .com
-    Root-->>Resolver: Go to TLD Server
-    Resolver->>TLD: Query google.com
-    TLD-->>Resolver: Go to Auth Server
-    Resolver->>Auth: Query google.com A Record
-    Auth-->>Resolver: IP: 142.250.190.46
-    Resolver-->>Browser: IP: 142.250.190.46
-    Browser->>Browser: Cache IP
-\`\`\``,
-  "availability vs consistency": `\`\`\`mermaid
-graph LR
-    subgraph CAP Theorem
-    C((Consistency)) --- A((Availability))
-    A --- P((Partition Tolerance))
-    P --- C
-    end
-    style P fill:#047857,stroke:#10b981
-\`\`\``
+  "content delivery network": [
+    `### Network Topology\n\n\`\`\`mermaid\ngraph TD\n    Client1[User - Europe] -->|Requests Video| Edge1[CDN Edge - Frankfurt]\n    Client2[User - Asia] -->|Requests Video| Edge2[CDN Edge - Tokyo]\n    Edge1 -.->|Cache Miss| Origin[(Origin Server - US East)]\n    Edge2 -.->|Cache Miss| Origin\n    Origin -.->|Video Chunk| Edge1\n    Origin -.->|Video Chunk| Edge2\n    Edge1 -->|Cache Hit| Client3[User 2 - Europe]\n\`\`\``,
+    `### Request Flow\n\n\`\`\`mermaid\nsequenceDiagram\n    participant U as User\n    participant E as Edge Node\n    participant O as Origin Server\n    U->>E: GET /video.mp4\n    alt In Cache\n        E-->>U: 200 OK (video.mp4)\n    else Not in Cache\n        E->>O: GET /video.mp4\n        O-->>E: 200 OK (video.mp4)\n        E->>E: Store in Cache\n        E-->>U: 200 OK (video.mp4)\n    end\n\`\`\``
+  ],
+  "domain name system": [
+    `### DNS Resolution Flow\n\n\`\`\`mermaid\nsequenceDiagram\n    participant U as User\n    participant R as DNS Resolver\n    participant Root as Root Server (.)\n    participant TLD as TLD Server (.com)\n    participant Auth as Auth Server (google.com)\n    U->>R: Resolve google.com\n    R->>Root: Query google.com\n    Root-->>R: Refer to .com TLD\n    R->>TLD: Query google.com\n    TLD-->>R: Refer to google.com Auth\n    R->>Auth: Query A Record\n    Auth-->>R: IP: 142.250.190.46\n    R-->>U: IP: 142.250.190.46\n\`\`\``,
+    `### DNS Hierarchy\n\n\`\`\`mermaid\ngraph TD\n    Root((Root .))\n    Root --> COM(.com)\n    Root --> ORG(.org)\n    Root --> NET(.net)\n    COM --> Google(google.com)\n    COM --> Amazon(amazon.com)\n    Google --> WWW(www.google.com)\n    Google --> MAIL(mail.google.com)\n\`\`\``
+  ],
+  "availability vs consistency": [
+    `### CAP Theorem\n\n\`\`\`mermaid\ngraph LR\n    subgraph CAP\n    C((Consistency)) --- A((Availability))\n    A --- P((Partition Tolerance))\n    P --- C\n    end\n\`\`\``
+  ],
+  "communication": [
+    `### Microservice Network Topology\n\n\`\`\`mermaid\ngraph TD\n    Client --> LB[Load Balancer]\n    LB --> API[API Gateway]\n    API --> S1[Auth Service]\n    API --> S2[User Service]\n    API --> S3[Payment Service]\n    S2 --> DB1[(User DB)]\n    S2 --> Cache[(Redis)]\n    S3 --> DB2[(Ledger DB)]\n\`\`\``,
+    `### Request-Response Sequence\n\n\`\`\`mermaid\nsequenceDiagram\n    participant C as Client\n    participant A as API Gateway\n    participant U as User Service\n    participant D as Database\n    C->>A: POST /users\n    A->>U: Forward POST\n    U->>D: INSERT INTO users\n    D-->>U: ACK\n    U-->>A: 201 Created\n    A-->>C: 201 Created\n\`\`\``,
+    `### OSI Model\n\n\`\`\`mermaid\ngraph TD\n    subgraph Application Layer\n    L7[7. Application - HTTP/SMTP]\n    L6[6. Presentation - SSL/TLS]\n    L5[5. Session - Sockets]\n    end\n    subgraph Transport Layer\n    L4[4. Transport - TCP/UDP]\n    end\n    subgraph Network Layer\n    L3[3. Network - IP/ICMP]\n    end\n    subgraph Physical\n    L2[2. Data Link - MAC/ARP]\n    L1[1. Physical - Cables/Radio]\n    end\n    L7 --> L6 --> L5 --> L4 --> L3 --> L2 --> L1\n\`\`\``
+  ],
+  "database": [
+    `### Master-Slave Replication\n\n\`\`\`mermaid\ngraph TD\n    WriteApp[Write Heavy App] --> Master[(Master DB)]\n    Master -.->|Async Replication| Slave1[(Slave 1)]\n    Master -.->|Async Replication| Slave2[(Slave 2)]\n    ReadApp[Read Heavy App] --> Slave1\n    ReadApp --> Slave2\n\`\`\``,
+    `### Consistent Hashing (Sharding)\n\n\`\`\`mermaid\ngraph LR\n    HashRing((Hash Ring))\n    HashRing -.-> NodeA[Node A (0-100)]\n    HashRing -.-> NodeB[Node B (101-200)]\n    HashRing -.-> NodeC[Node C (201-300)]\n    Key1((Key: user_123)) --> HashRing\n    Key2((Key: user_456)) --> HashRing\n\`\`\``
+  ]
 };
 
 const URL = 'https://raw.githubusercontent.com/donnemartin/system-design-primer/master/README.md';
@@ -186,7 +165,11 @@ function parseAndGenerate(markdown) {
         // Inject mermaid diagram if available for this module
         for (const key in DIAGRAMS) {
             if (titleKey.includes(key) && currentModule.chapters.length > 0) {
-                currentModule.chapters[0].content.unshift(DIAGRAMS[key]);
+                if (Array.isArray(DIAGRAMS[key])) {
+                    currentModule.chapters[0].content.unshift(...DIAGRAMS[key]);
+                } else {
+                    currentModule.chapters[0].content.unshift(DIAGRAMS[key]);
+                }
                 break;
             }
         }

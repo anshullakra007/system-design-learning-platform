@@ -651,7 +651,7 @@ export const modules = [
       {
         "title": "Overview",
         "content": [
-          "```mermaid\ngraph LR\n    subgraph CAP Theorem\n    C((Consistency)) --- A((Availability))\n    A --- P((Partition Tolerance))\n    P --- C\n    end\n    style P fill:#047857,stroke:#10b981\n```",
+          "### CAP Theorem\n\n```mermaid\ngraph LR\n    subgraph CAP\n    C((Consistency)) --- A((Availability))\n    A --- P((Partition Tolerance))\n    P --- C\n    end\n```",
           ""
         ],
         "deepDive": null,
@@ -1019,7 +1019,8 @@ export const modules = [
       {
         "title": "Overview",
         "content": [
-          "```mermaid\nsequenceDiagram\n    participant User\n    participant Browser\n    participant Resolver as DNS Resolver\n    participant Root as Root Server\n    participant TLD as TLD Server\n    participant Auth as Auth Nameserver\n    User->>Browser: Type google.com\n    Browser->>Resolver: Where is google.com?\n    Resolver->>Root: Query .com\n    Root-->>Resolver: Go to TLD Server\n    Resolver->>TLD: Query google.com\n    TLD-->>Resolver: Go to Auth Server\n    Resolver->>Auth: Query google.com A Record\n    Auth-->>Resolver: IP: 142.250.190.46\n    Resolver-->>Browser: IP: 142.250.190.46\n    Browser->>Browser: Cache IP\n```",
+          "### DNS Resolution Flow\n\n```mermaid\nsequenceDiagram\n    participant U as User\n    participant R as DNS Resolver\n    participant Root as Root Server (.)\n    participant TLD as TLD Server (.com)\n    participant Auth as Auth Server (google.com)\n    U->>R: Resolve google.com\n    R->>Root: Query google.com\n    Root-->>R: Refer to .com TLD\n    R->>TLD: Query google.com\n    TLD-->>R: Refer to google.com Auth\n    R->>Auth: Query A Record\n    Auth-->>R: IP: 142.250.190.46\n    R-->>U: IP: 142.250.190.46\n```",
+          "### DNS Hierarchy\n\n```mermaid\ngraph TD\n    Root((Root .))\n    Root --> COM(.com)\n    Root --> ORG(.org)\n    Root --> NET(.net)\n    COM --> Google(google.com)\n    COM --> Amazon(amazon.com)\n    Google --> WWW(www.google.com)\n    Google --> MAIL(mail.google.com)\n```",
           "",
           "<p align=\"center\">",
           "<img src=\"https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/IOyLj4i.jpg\">",
@@ -1114,7 +1115,8 @@ export const modules = [
       {
         "title": "Overview",
         "content": [
-          "```mermaid\ngraph TD\n    Client1[User - Europe] -->|Requests Video| Edge1[CDN Edge Server - Frankfurt]\n    Client2[User - Asia] -->|Requests Video| Edge2[CDN Edge Server - Tokyo]\n    Edge1 -.->|Cache Miss| Origin[(Origin Server - US East)]\n    Edge2 -.->|Cache Miss| Origin\n    Origin -.->|Video Chunk| Edge1\n    Origin -.->|Video Chunk| Edge2\n    Edge1 -->|Cache Hit| Client3[User 2 - Europe]\n    style Edge1 fill:#1e3a8a,stroke:#3b82f6\n    style Edge2 fill:#1e3a8a,stroke:#3b82f6\n    style Origin fill:#991b1b,stroke:#ef4444\n```",
+          "### Network Topology\n\n```mermaid\ngraph TD\n    Client1[User - Europe] -->|Requests Video| Edge1[CDN Edge - Frankfurt]\n    Client2[User - Asia] -->|Requests Video| Edge2[CDN Edge - Tokyo]\n    Edge1 -.->|Cache Miss| Origin[(Origin Server - US East)]\n    Edge2 -.->|Cache Miss| Origin\n    Origin -.->|Video Chunk| Edge1\n    Origin -.->|Video Chunk| Edge2\n    Edge1 -->|Cache Hit| Client3[User 2 - Europe]\n```",
+          "### Request Flow\n\n```mermaid\nsequenceDiagram\n    participant U as User\n    participant E as Edge Node\n    participant O as Origin Server\n    U->>E: GET /video.mp4\n    alt In Cache\n        E-->>U: 200 OK (video.mp4)\n    else Not in Cache\n        E->>O: GET /video.mp4\n        O-->>E: 200 OK (video.mp4)\n        E->>E: Store in Cache\n        E-->>U: 200 OK (video.mp4)\n    end\n```",
           "",
           "<p align=\"center\">",
           "<img src=\"https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/h9TAuGI.jpg\">",
@@ -1619,6 +1621,8 @@ export const modules = [
       {
         "title": "Overview",
         "content": [
+          "### Master-Slave Replication\n\n```mermaid\ngraph TD\n    WriteApp[Write Heavy App] --> Master[(Master DB)]\n    Master -.->|Async Replication| Slave1[(Slave 1)]\n    Master -.->|Async Replication| Slave2[(Slave 2)]\n    ReadApp[Read Heavy App] --> Slave1\n    ReadApp --> Slave2\n```",
+          "### Consistent Hashing (Sharding)\n\n```mermaid\ngraph LR\n    HashRing((Hash Ring))\n    HashRing -.-> NodeA[Node A (0-100)]\n    HashRing -.-> NodeB[Node B (101-200)]\n    HashRing -.-> NodeC[Node C (201-300)]\n    Key1((Key: user_123)) --> HashRing\n    Key2((Key: user_456)) --> HashRing\n```",
           "",
           "<p align=\"center\">",
           "<img src=\"https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/Xkm5CXz.png\">",
@@ -2512,6 +2516,9 @@ export const modules = [
       {
         "title": "Overview",
         "content": [
+          "### Microservice Network Topology\n\n```mermaid\ngraph TD\n    Client --> LB[Load Balancer]\n    LB --> API[API Gateway]\n    API --> S1[Auth Service]\n    API --> S2[User Service]\n    API --> S3[Payment Service]\n    S2 --> DB1[(User DB)]\n    S2 --> Cache[(Redis)]\n    S3 --> DB2[(Ledger DB)]\n```",
+          "### Request-Response Sequence\n\n```mermaid\nsequenceDiagram\n    participant C as Client\n    participant A as API Gateway\n    participant U as User Service\n    participant D as Database\n    C->>A: POST /users\n    A->>U: Forward POST\n    U->>D: INSERT INTO users\n    D-->>U: ACK\n    U-->>A: 201 Created\n    A-->>C: 201 Created\n```",
+          "### OSI Model\n\n```mermaid\ngraph TD\n    subgraph Application Layer\n    L7[7. Application - HTTP/SMTP]\n    L6[6. Presentation - SSL/TLS]\n    L5[5. Session - Sockets]\n    end\n    subgraph Transport Layer\n    L4[4. Transport - TCP/UDP]\n    end\n    subgraph Network Layer\n    L3[3. Network - IP/ICMP]\n    end\n    subgraph Physical\n    L2[2. Data Link - MAC/ARP]\n    L1[1. Physical - Cables/Radio]\n    end\n    L7 --> L6 --> L5 --> L4 --> L3 --> L2 --> L1\n```",
           "",
           "<p align=\"center\">",
           "<img src=\"https://raw.githubusercontent.com/donnemartin/system-design-primer/master/images/5KeocQs.jpg\">",

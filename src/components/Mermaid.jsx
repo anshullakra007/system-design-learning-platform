@@ -3,7 +3,18 @@ import mermaid from 'mermaid';
 
 mermaid.initialize({
   startOnLoad: false,
-  theme: 'dark',
+  theme: 'base',
+  themeVariables: {
+    primaryColor: '#0f0f0f',
+    primaryTextColor: '#ffffff',
+    primaryBorderColor: '#333333',
+    lineColor: '#555555',
+    secondaryColor: '#1a1a1a',
+    tertiaryColor: '#000000',
+    noteBkgColor: '#222222',
+    noteTextColor: '#ffffff',
+    noteBorderColor: '#444444'
+  },
   securityLevel: 'loose',
 });
 
