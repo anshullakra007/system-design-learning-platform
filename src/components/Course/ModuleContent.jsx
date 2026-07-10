@@ -1,4 +1,7 @@
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import rehypeRaw from 'rehype-raw'
 import rehypeSlug from 'rehype-slug'
 import Exercise from './Exercise'
@@ -22,8 +25,12 @@ export default function ModuleContent({ activeModule }) {
           
           <div className="chapter-content">
             <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw, rehypeSlug]} 
               components={{ 
+                table: ({_node, ...props}) => <div className="table-responsive"><table {...props} /></div>,
+                th: ({_node, ...props}) => <th className="md-th" {...props} />,
+                td: ({_node, ...props}) => <td className="md-td" {...props} />,
                 a: ({_node, ...props}) => {
                   if (props.href && props.href.startsWith('#')) {
                     return (
@@ -45,7 +52,20 @@ export default function ModuleContent({ activeModule }) {
                   if (!inline && match && match[1] === 'mermaid') {
                     return <Mermaid chart={String(children).replace(/\n$/, '')} />
                   }
-                  return <code className={className} {...props}>{children}</code>
+                  if (!inline && match) {
+                    return (
+                      <SyntaxHighlighter
+                        style={vscDarkPlus}
+                        language={match[1]}
+                        PreTag="div"
+                        className="md-code-block"
+                        {...props}
+                      >
+                        {String(children).replace(/\n$/, '')}
+                      </SyntaxHighlighter>
+                    )
+                  }
+                  return <code className="md-inline-code" {...props}>{children}</code>
                 }
               }}
             >
@@ -61,8 +81,12 @@ export default function ModuleContent({ activeModule }) {
               </h3>
               <div className="deep-dive-content">
                 <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw, rehypeSlug]} 
                   components={{ 
+                    table: ({_node, ...props}) => <div className="table-responsive"><table {...props} /></div>,
+                    th: ({_node, ...props}) => <th className="md-th" {...props} />,
+                    td: ({_node, ...props}) => <td className="md-td" {...props} />,
                     a: ({_node, ...props}) => {
                       if (props.href && props.href.startsWith('#')) {
                         return (
@@ -84,7 +108,20 @@ export default function ModuleContent({ activeModule }) {
                       if (!inline && match && match[1] === 'mermaid') {
                         return <Mermaid chart={String(children).replace(/\n$/, '')} />
                       }
-                      return <code className={className} {...props}>{children}</code>
+                      if (!inline && match) {
+                        return (
+                          <SyntaxHighlighter
+                            style={vscDarkPlus}
+                            language={match[1]}
+                            PreTag="div"
+                            className="md-code-block"
+                            {...props}
+                          >
+                            {String(children).replace(/\n$/, '')}
+                          </SyntaxHighlighter>
+                        )
+                      }
+                      return <code className="md-inline-code" {...props}>{children}</code>
                     }
                   }}
                 >

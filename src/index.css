@@ -643,3 +643,41 @@ body {
   border-radius: 8px;
   border: 1px solid var(--border-color);
 }
+
+/* Markdown GFM Tables & Code */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+.chapter-content table, .deep-dive-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.md-th {
+  background: var(--bg-secondary);
+  color: var(--text-main);
+  font-weight: 700;
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid var(--border-color);
+}
+.md-td {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+.md-inline-code {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e5e5e5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+.md-code-block {
+  margin: 1.5rem 0 !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--border-color);
+}
