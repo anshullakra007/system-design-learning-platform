@@ -9,15 +9,20 @@ const ModuleContent = lazy(() => import('./components/Course/ModuleContent'))
 const ExamEngine = lazy(() => import('./components/Exam/ExamEngine'))
 
 function App() {
-  const [user, setUser] = useState(null)
-  const [activeModuleId, setActiveModuleId] = useState(1)
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem('guestUser');
+    return saved ? JSON.parse(saved) : null;
+  })
+  const [activeModuleId, setActiveModuleId] = useState(() => {
+    return parseInt(localStorage.getItem('activeModuleId')) || 1
+  })
   const [loading, setLoading] = useState(true)
   const [modulesData, setModulesData] = useState([])
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser)
       if (currentUser) {
+        setUser(currentUser)
         try {
           // Code Splitting: Dynamically import the massive JSON payload
           // so it doesn't block the initial chunk.
@@ -32,14 +37,39 @@ function App() {
     return () => unsubscribe()
   }, [])
 
+  // Load modules data when user becomes available (auth or guest)
+  useEffect(() => {
+    if (user && modulesData.length === 0) {
+      import('./data/modules.js')
+        .then(data => setModulesData(data.modules))
+        .catch(err => console.error("Failed to load modules payload", err))
+    }
+  }, [user])
+
+  // Sync active module to localStorage
+  useEffect(() => {
+    localStorage.setItem('activeModuleId', activeModuleId)
+  }, [activeModuleId])
+
+  const handleGuestLogin = () => {
+    const guest = { email: 'guest@student.local', isGuest: true }
+    setUser(guest)
+    localStorage.setItem('guestUser', JSON.stringify(guest))
+  }
+
   const handleLogout = async () => {
-    await signOut(auth)
+    if (!user?.isGuest) {
+      await signOut(auth)
+    }
+    setUser(null)
+    localStorage.removeItem('guestUser')
+    localStorage.removeItem('activeModuleId')
   }
 
   if (loading) return <div className="login-container"><p>Loading environment...</p></div>
 
   if (!user) {
-    return <Login />
+    return <Login onGuestLogin={handleGuestLogin} />
   }
 
   const activeModule = modulesData.find(m => m.id === activeModuleId) || modulesData[0]

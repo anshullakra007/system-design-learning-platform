@@ -2,14 +2,22 @@ import { useState, useEffect } from 'react'
 import { ClipboardList, CheckCircle2, XCircle, RotateCcw } from 'lucide-react'
 
 export default function ExamEngine({ exam }) {
-  const [answers, setAnswers] = useState({})
-  const [submitted, setSubmitted] = useState(false)
+  const getStorageKey = (key) => `exam_${exam.title}_${key}`;
 
-  // Reset exam when switching modules
+  const [answers, setAnswers] = useState(() => {
+    const saved = localStorage.getItem(getStorageKey('answers'));
+    return saved ? JSON.parse(saved) : {};
+  })
+  
+  const [submitted, setSubmitted] = useState(() => {
+    return localStorage.getItem(getStorageKey('submitted')) === 'true';
+  })
+
+  // Sync to localStorage
   useEffect(() => {
-    setAnswers({})
-    setSubmitted(false)
-  }, [exam])
+    localStorage.setItem(getStorageKey('answers'), JSON.stringify(answers));
+    localStorage.setItem(getStorageKey('submitted'), submitted);
+  }, [answers, submitted, exam.title])
 
   const handleSelect = (qIndex, optionIndex) => {
     if (!submitted) {

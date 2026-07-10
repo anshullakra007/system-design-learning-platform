@@ -1,7 +1,7 @@
 import { signInWithPopup } from 'firebase/auth'
 import { auth, googleProvider } from '../../firebase'
 
-export default function Login() {
+export default function Login({ onGuestLogin }) {
   const handleLogin = async () => {
     try {
       await signInWithPopup(auth, googleProvider)
@@ -18,6 +18,9 @@ export default function Login() {
         <p>The definitive industry-standard guide to scalable architectures. Sign in to access the modules.</p>
         <button className="btn-primary" onClick={handleLogin}>
           Sign in with Google
+        </button>
+        <button className="btn-secondary" style={{marginTop: '1rem', width: '100%'}} onClick={onGuestLogin}>
+          Continue as Guest
         </button>
       </div>
     </div>
