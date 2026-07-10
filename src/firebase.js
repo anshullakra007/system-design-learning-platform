@@ -7,12 +7,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // 3. Enable Google Authentication in the Auth Provider settings
 // 4. Copy the config object here
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY_HERE",
-  authDomain: "YOUR_AUTH_DOMAIN_HERE",
-  projectId: "YOUR_PROJECT_ID_HERE",
-  storageBucket: "YOUR_STORAGE_BUCKET_HERE",
-  messagingSenderId: "YOUR_SENDER_ID_HERE",
-  appId: "YOUR_APP_ID_HERE"
+  apiKey: "AIzaSyDB48SctCkzdxvpwerkzWIrHJQ3Wls9wWQ",
+  authDomain: "system-design-platform.firebaseapp.com",
+  projectId: "system-design-platform",
+  storageBucket: "system-design-platform.firebasestorage.app",
+  messagingSenderId: "1017428074324",
+  appId: "1:1017428074324:web:1ec81cdc989a556cdd32c1",
+  measurementId: "G-F3ND1YL5RL"
 };
 
 const app = initializeApp(firebaseConfig);
