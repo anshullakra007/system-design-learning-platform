@@ -10,6 +10,16 @@ import Mermaid from '../Mermaid'
 import { BookOpen, Microscope, Lightbulb } from 'lucide-react'
 
 export default function ModuleContent({ activeModule }) {
+  const sanitizeMarkdown = (rawText) => {
+    if (!rawText) return '';
+    let text = rawText;
+    // Fix empty table headers that break remark-gfm
+    text = text.replace(/\|\s*Question\s*\|\s*\|/g, '| Question | Solution |');
+    // Fix broken trailing pipes
+    text = text.replace(/\|\n\|/g, '|\n|');
+    return text;
+  };
+
   return (
     <>
       <div className="module-header">
@@ -64,6 +74,9 @@ export default function ModuleContent({ activeModule }) {
                       />
                     )
                   }
+                  if (props.href && (props.href.startsWith('solutions/') || props.href.startsWith('challenges/'))) {
+                    return <a target="_blank" rel="noopener noreferrer" href={`https://github.com/donnemartin/system-design-primer/tree/master/${props.href}`} {...props}>{props.children}</a>
+                  }
                   return <a target="_blank" rel="noopener noreferrer" {...props} />
                 },
                 code({_node, inline, className, children, ...props}) {
@@ -85,10 +98,150 @@ export default function ModuleContent({ activeModule }) {
                     )
                   }
                   return <code className="md-inline-code" {...props}>{children}</code>
+                },
+                h2: ({_node, ...props}) => {
+                  const title = String(props.children).toLowerCase();
+                  let diagram = null;
+                  
+                  if (title.includes('least recently used cache') || title.includes('lru cache')) {
+                    diagram = `graph LR
+    A[Hash Map] --> B((Node 1))
+    A --> C((Node 2))
+    A --> D((Node 3))
+    B <--> C
+    C <--> D
+    style A fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+                    `;
+                  } else if (title.includes('parking lot')) {
+                    diagram = `classDiagram
+    class ParkingLot {
+      +List~Level~ levels
+      +parkVehicle(Vehicle)
+    }
+    class Level {
+      +int floor
+      +List~ParkingSpot~ spots
+    }
+    class ParkingSpot {
+      +Vehicle vehicle
+      +SpotSize size
+    }
+    class Vehicle {
+      <<abstract>>
+      +String licensePlate
+    }
+    class Car { }
+    class Motorcycle { }
+    ParkingLot "1" *-- "many" Level
+    Level "1" *-- "many" ParkingSpot
+    Vehicle <|-- Car
+    Vehicle <|-- Motorcycle
+                    `;
+                  } else if (title.includes('chat server')) {
+                    diagram = `graph TD
+    A[Client 1] <-->|WebSocket| B(Chat Server Node 1)
+    C[Client 2] <-->|WebSocket| D(Chat Server Node 2)
+    B <--> E[(Redis Pub/Sub)]
+    D <--> E
+    B --> F[(Message DB)]
+    D --> F
+    
+    style A fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+                    `;
+                  }
+
+                  return (
+                    <>
+                      <h2 {...props} />
+                      {diagram && (
+                        <div style={{ margin: '2rem 0' }}>
+                          <Mermaid chart={diagram} />
+                        </div>
+                      )}
+                    </>
+                  );
+                },
+                h3: ({_node, ...props}) => {
+                  const title = String(props.children).toLowerCase();
+                  let diagram = null;
+                  
+                  if (title.includes('least recently used cache') || title.includes('lru cache')) {
+                    diagram = `graph LR
+    A[Hash Map] --> B((Node 1))
+    A --> C((Node 2))
+    A --> D((Node 3))
+    B <--> C
+    C <--> D
+    style A fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+                    `;
+                  } else if (title.includes('parking lot')) {
+                    diagram = `classDiagram
+    class ParkingLot {
+      +List~Level~ levels
+      +parkVehicle(Vehicle)
+    }
+    class Level {
+      +int floor
+      +List~ParkingSpot~ spots
+    }
+    class ParkingSpot {
+      +Vehicle vehicle
+      +SpotSize size
+    }
+    class Vehicle {
+      <<abstract>>
+      +String licensePlate
+    }
+    class Car { }
+    class Motorcycle { }
+    ParkingLot "1" *-- "many" Level
+    Level "1" *-- "many" ParkingSpot
+    Vehicle <|-- Car
+    Vehicle <|-- Motorcycle
+                    `;
+                  } else if (title.includes('chat server')) {
+                    diagram = `graph TD
+    A[Client 1] <-->|WebSocket| B(Chat Server Node 1)
+    C[Client 2] <-->|WebSocket| D(Chat Server Node 2)
+    B <--> E[(Redis Pub/Sub)]
+    D <--> E
+    B --> F[(Message DB)]
+    D --> F
+    
+    style A fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#1a1a1a,stroke:#333,stroke-width:2px,color:#fff
+                    `;
+                  }
+
+                  return (
+                    <>
+                      <h3 {...props} />
+                      {diagram && (
+                        <div style={{ margin: '2rem 0' }}>
+                          <Mermaid chart={diagram} />
+                        </div>
+                      )}
+                    </>
+                  );
                 }
               }}
             >
-              {chapter.content.join('\n\n')}
+              {sanitizeMarkdown(chapter.content.join('\n\n'))}
             </ReactMarkdown>
           </div>
 
