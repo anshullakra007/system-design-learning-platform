@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { auth, googleProvider } from './firebase'
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
 import { modules } from './data/modules'
+import ReactMarkdown from 'react-markdown'
 
 function Exercise({ exercise, index }) {
   const [showAnswer, setShowAnswer] = useState(false)
@@ -168,18 +169,14 @@ function App() {
             <h2 className="chapter-title">{chapter.title}</h2>
             
             <div className="chapter-content">
-              {chapter.content.map((paragraph, pIdx) => (
-                <p key={pIdx}>{paragraph}</p>
-              ))}
+              <ReactMarkdown>{chapter.content.join('\n\n')}</ReactMarkdown>
             </div>
 
             {chapter.deepDive && (
               <div className="deep-dive-card">
                 <h3><span className="badge">Deep Dive</span> {chapter.deepDive.title}</h3>
                 <div className="deep-dive-content">
-                  {chapter.deepDive.content.map((p, pIdx) => (
-                    <p key={pIdx}>{p}</p>
-                  ))}
+                  <ReactMarkdown>{chapter.deepDive.content.join('\n\n')}</ReactMarkdown>
                 </div>
               </div>
             )}
