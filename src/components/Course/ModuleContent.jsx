@@ -14,14 +14,18 @@ export default function ModuleContent({ activeModule }) {
           <h2 className="chapter-title">{chapter.title}</h2>
           
           <div className="chapter-content">
-            <ReactMarkdown>{chapter.content.join('\n\n')}</ReactMarkdown>
+            <ReactMarkdown components={{ a: ({node, ...props}) => <a target="_blank" rel="noopener noreferrer" {...props} /> }}>
+              {chapter.content.join('\n\n')}
+            </ReactMarkdown>
           </div>
 
           {chapter.deepDive && (
             <div className="deep-dive-card">
               <h3><span className="badge">Deep Dive</span> {chapter.deepDive.title}</h3>
               <div className="deep-dive-content">
-                <ReactMarkdown>{chapter.deepDive.content.join('\n\n')}</ReactMarkdown>
+                <ReactMarkdown components={{ a: ({node, ...props}) => <a target="_blank" rel="noopener noreferrer" {...props} /> }}>
+                  {chapter.deepDive.content.join('\n\n')}
+                </ReactMarkdown>
               </div>
             </div>
           )}

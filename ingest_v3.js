@@ -113,6 +113,9 @@ function parseAndGenerate(markdown) {
     // Rewrite image URLs to absolute URLs
     line = line.replace(/\!\[(.*?)\]\((images\/.*?)\)/g, `![$1](${IMG_BASE_URL}$2)`);
 
+    // Rewrite relative Markdown links to absolute GitHub URLs
+    line = line.replace(/(?<!!)\[(.*?)\]\((?!http|#)(.*?)\)/g, `[$1](https://github.com/donnemartin/system-design-primer/blob/master/$2)`);
+
     if (line.startsWith('## ')) {
       if (currentModule) {
         // Add exams to the previous module before moving on
