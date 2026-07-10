@@ -5,15 +5,16 @@ mermaid.initialize({
   startOnLoad: false,
   theme: 'base',
   themeVariables: {
-    primaryColor: '#0f0f0f',
+    primaryColor: '#000000',
     primaryTextColor: '#ffffff',
-    primaryBorderColor: '#333333',
-    lineColor: '#555555',
-    secondaryColor: '#1a1a1a',
+    primaryBorderColor: '#ffffff',
+    lineColor: '#e5e7eb',
+    arrowheadColor: '#e5e7eb',
+    secondaryColor: '#111111',
     tertiaryColor: '#000000',
     noteBkgColor: '#222222',
     noteTextColor: '#ffffff',
-    noteBorderColor: '#444444'
+    noteBorderColor: '#ffffff'
   },
   securityLevel: 'loose',
 });

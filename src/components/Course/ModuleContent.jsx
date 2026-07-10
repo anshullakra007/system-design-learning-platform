@@ -30,6 +30,24 @@ export default function ModuleContent({ activeModule }) {
         <p className="module-desc">{activeModule.description}</p>
       </div>
 
+      {activeModule.title.toLowerCase() === "system design interview questions" && (
+        <div style={{ marginBottom: '4rem' }}>
+          <h2 className="chapter-title" style={{ marginBottom: '1rem' }}>Core Architecture Flow</h2>
+          <Mermaid chart={`graph TD
+    Client[Client] -->|1. Resolve IP| DNS[DNS]
+    Client -->|2. Request Static Assets| CDN[CDN]
+    Client -->|3. Dynamic Request| LoadBalancer[LoadBalancer]
+    LoadBalancer -->|4. Route Traffic| WebServer[WebServer]
+    
+    style Client fill:#000,stroke:#fff,stroke-width:1px,color:#fff
+    style DNS fill:#000,stroke:#fff,stroke-width:1px,color:#fff
+    style CDN fill:#000,stroke:#fff,stroke-width:1px,color:#fff
+    style LoadBalancer fill:#000,stroke:#fff,stroke-width:1px,color:#fff
+    style WebServer fill:#000,stroke:#fff,stroke-width:1px,color:#fff
+          `} />
+        </div>
+      )}
+
       {activeModule.title.toLowerCase().includes("approach a system design") && (
         <div style={{ marginBottom: '4rem' }}>
           <h2 className="chapter-title" style={{ marginBottom: '1rem' }}>Visual Blueprint: The Approach</h2>
