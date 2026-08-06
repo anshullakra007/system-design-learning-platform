@@ -18,7 +18,7 @@ The platform delivers an exceptional, interactive educational experience, demons
 
 A highly optimized, enterprise-grade educational platform built to teach scalable architectures and distributed systems. This repository was designed from the ground up as a fully interactive, highly credentialed learning experience, engineered for mass usage and FAANG-level portfolio presentation.
 
-##  Architectural Highlights (The "Wow" Factor)
+## Architectural Highlights (The "Wow" Factor)
 
 ### 1. Automated ETL Ingestion Engine (`ingest_v3.js`)
 Instead of manually hardcoding content, this repository features a custom-built Extraction, Transformation, and Loading (ETL) pipeline. It autonomously ingeps the massive `donnemartin/system-design-primer`, parses the raw markdown, safely sanitizes HTML, injects contextual Mermaid.js architecture diagrams on the fly, and outputs a highly optimized `modules.js` JSON tree.
@@ -40,7 +40,7 @@ The custom Practice & Exam engines persist progression state natively without ba
 
 ---
 
-##  Tech Stack
+## Tech Stack
 - Core: React 18, Vite (for blazing fast HMR and optimized Rollup chunking)
 - Routing & State: Custom React Hooks + LocalStorage
 - Content Parsing: `react-markdown`, `remark-gfm` (GitHub Flavored Markdown), `rehype-raw`
@@ -48,7 +48,7 @@ The custom Practice & Exam engines persist progression state natively without ba
 - Styling: Pure Vanilla CSS (custom scrollbars, grid layouts, fluid typography)
 - Auth: Firebase Auth (Google OAuth + Guest Bypass)
 
-##  Setup & Development
+## Setup & Development
 
 ```bash
 # Install dependencies
