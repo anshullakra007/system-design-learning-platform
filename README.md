@@ -1,19 +1,5 @@
 # System Design Learning Platform 
 
-## Why I built this ?
-
-### Situation
-Learning distributed systems and high-level architecture requires interactive, structured content, but most resources are static text blocks.
-
-### Task
-I wanted to build a dynamic learning management system specifically tailored for software architecture, featuring interactive diagrams and progress tracking.
-
-### Action
-I engineered a full-stack Next.js application with a PostgreSQL database. I integrated Markdown/MDX parsing to render complex technical documentation and embedded Mermaid.js for live architectural diagramming. I implemented user authentication and session management to track learning progress across modules.
-
-### Result
-The platform delivers an exceptional, interactive educational experience, demonstrating strong full-stack architectural design, database modeling, and specialized frontend content rendering.
-
 ---
 
 A highly optimized, enterprise-grade educational platform built to teach scalable architectures and distributed systems. This repository was designed from the ground up as a fully interactive, highly credentialed learning experience, engineered for mass usage and FAANG-level portfolio presentation.
@@ -68,3 +54,19 @@ npm run build
 This repository has undergone rigorous visual, layout, and UX auditing. All relative repository links have been safely parsed, all console logs purged, and all empty states thoroughly polished for an exceptional user experience.
 
 ---
+
+---
+
+## Why I built this ?
+
+### Situation
+Learning distributed systems and high-level architecture requires interactive, structured content, but most resources are static text blocks.
+
+### Task
+I wanted to build a dynamic learning management system specifically tailored for software architecture, featuring interactive diagrams and progress tracking.
+
+### Action
+I engineered a full-stack Next.js application with a PostgreSQL database. I integrated Markdown/MDX parsing to render complex technical documentation and embedded Mermaid.js for live architectural diagramming. I implemented user authentication and session management to track learning progress across modules.
+
+### Result
+The platform delivers an exceptional, interactive educational experience, demonstrating strong full-stack architectural design, database modeling, and specialized frontend content rendering.
