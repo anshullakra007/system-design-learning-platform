@@ -1,61 +1,61 @@
-# Sy D L lf 
+# System Design Learning Platform 
 
-A ly z, - ul lf bul lbl u bu y. T y w f u u fully v, ly l l , f u FAANG-lvl fl .
+A highly optimized, enterprise-grade educational platform built to teach scalable architectures and distributed systems. This repository was designed from the ground up as a fully interactive, highly credentialed learning experience, engineered for mass usage and FAANG-level portfolio presentation.
 
-##  Aul Hl (T "Ww" F)
+##  Architectural Highlights (The "Wow" Factor)
 
-### 1. Au TL I (`v3.`)
-I f ully , y fu u-bul , Tf, L (TL) l. I uuly v `/y--`, w kw, fly z HTML, ul M. u fly, uu ly z `ul.` JSON .
+### 1. Automated ETL Ingestion Engine (`ingest_v3.js`)
+Instead of manually hardcoding content, this repository features a custom-built Extraction, Transformation, and Loading (ETL) pipeline. It autonomously ingeps the massive `donnemartin/system-design-primer`, parses the raw markdown, safely sanitizes HTML, injects contextual Mermaid.js architecture diagrams on the fly, and outputs a highly optimized `modules.js` JSON tree.
 
-### 2. Cf (A-C WbRTC)
-T lf u wk— vfbl l u. T `v` f - u bw AI:
-- **`UM()` I:** F lv u--u wb f w .
-- **`DlyM()` S S:** M k u v ff- lku.
-- **`vbly` Tb-Lk:** Il bu fu-k f u w b ( bf OS u l fl v).
+### 2. Proctored Certification Engine (Anti-Cheat WebRTC)
+The platform is not just a wiki—it is a verifiable credentialing suite. The `ProctoredExamEnvironment` enforces strict anti-cheat mechanisms using browser APIs:
+- **`getUserMedia()` Integration:** Forces a live Picture-in-Picture webcam feed with a recording indicator.
+- **`getDisplayMedia()` Screen Sharing:** Mandates desktop capture to prevent off-screen lookup.
+- **`visibilitychange` Tab-Locking:** Implements debounced focus-tracking to terminate the exam if the user switches tabs (ignoring brief OS popups to eliminate false positives).
 
-### 3. 60f Mbl f & CSS C
-R 140KB w kw yl u v lyu u bl DOM. T lf ulz CSS C (`-vbly: u` `--z`) w `vflw-: ` . T bw ly k lyu lul f ff- blk, u 60f flu ll v .
+### 3. 60fps Mobile Performance & CSS Containment
+Rendering a 140KB raw markdown payload causes massive layout thrashing and stuttering on mobile DOMs. This platform utilizes strict CSS Containment (`content-visibility: auto` and `contain-intrinsic-size`) paired with `overflow-x: hidden` constraints. The browser entirely skips layout calculations for off-screen blocks, guaranteeing 60fps fluid scrolling despite the massive data tree.
 
-### 4. Z Lyu Sf (CLS) Skl L
-T u l V' -l y `R.lzy()` uk. Du l l, w bk lyu fl, Su buy u ululy f `<LSkl />` k lyu f ul.
+### 4. Zero Layout Shift (CLS) Skeleton Loaders
+The architecture relies on Vite's code-splitting and dynamic `React.lazy()` chunking. During initial load, rather than showing broken layouts or text flashes, the app intercepts the Suspense boundary and mounts a meticulously crafted `<LoadingSkeleton />` mimicking the exact layout of the target module.
 
-### 5. LlS S 
-T u & vly wu bk u. T k v b vly -ul, v `llS` w l v k, lly l UI u u ul- u.
+### 5. LocalStorage State Engine
+The custom Practice & Exam engines persist progression state natively without backend roundtrips. The state hooks have been heavily de-duplicated, moving `localStorage` atomic writes into action handlers rather than passive hooks, completely eliminating race conditions and UI stutter during rapid multi-choice inputs.
 
 ---
 
-##  T Sk
-- **C:** R 18, V (f blz f HMR z Rllu uk)
-- **Ru & S:** Cu R Hk + LlS
-- **C :** `-kw`, `k-f` (GHub Flv Mkw), `y-w`
-- **Vulz:** M. (yl k- UI )
-- **Syl:** u Vll CSS (u llb, lyu, flu yy)
-- **Au:** Fb Au (Gl OAu + Gu By)
+##  Tech Stack
+- **Core:** React 18, Vite (for blazing fast HMR and optimized Rollup chunking)
+- **Routing & State:** Custom React Hooks + LocalStorage
+- **Content Parsing:** `react-markdown`, `remark-gfm` (GitHub Flavored Markdown), `rehype-raw`
+- **Visualizations:** Mermaid.js (styled in stark-monochrome to match the UI aesthetic)
+- **Styling:** Pure Vanilla CSS (custom scrollbars, grid layouts, fluid typography)
+- **Auth:** Firebase Auth (Google OAuth + Guest Bypass)
 
-##  Su & Dvl
+##  Setup & Development
 
-```b
-# Ill 
- ll
+```bash
+# Install dependencies
+npm install
 
-# Ru u TL l (Ol: ly bul //ul.)
- v3.
+# Run the automated ETL pipeline (Optional: already bundled in src/data/modules.js)
+node ingest_v3.js
 
-# S v v
- u v
+# Start the dev server
+npm run dev
 
-# Bul f u
- u bul
+# Build for production
+npm run build
 ```
 
-## FAANG-Cf u Ry
-T y u u vul, lyu, UX u. All lv y lk v b fly , ll l l u, ll y uly l f l u .
+## FAANG-Certified Production Ready
+This repository has undergone rigorous visual, layout, and UX auditing. All relative repository links have been safely parsed, all console logs purged, and all empty states thoroughly polished for an exceptional user experience.
 
 ---
 
-## Wy I bul ?
+## Why I built this ?
 
-**Su:** L bu y -lvl u qu v, uu , bu u blk.
-**Tk:** I w bul y l y flly l f fw u, fu v k.
-**A:** I full-k N. l w SQL b. I Mkw/MDX l l u b M. f lv ul . I l u u k l ul.
-**Rul:** T lf lv l, v ul , full-k ul , b l, lz f .
+**Situation:** Learning distributed systems and high-level architecture requires interactive, structured content, but most resources are static text blocks.
+**Task:** I wanted to build a dynamic learning management system specifically tailored for software architecture, featuring interactive diagrams and progress tracking.
+**Action:** I engineered a full-stack Next.js application with a PostgreSQL database. I integrated Markdown/MDX parsing to render complex technical documentation and embedded Mermaid.js for live architectural diagramming. I implemented user authentication and session management to track learning progress across modules.
+**Result:** The platform delivers an exceptional, interactive educational experience, demonstrating strong full-stack architectural design, database modeling, and specialized frontend content rendering.
