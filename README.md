@@ -53,7 +53,7 @@ This repository has undergone rigorous visual, layout, and UX auditing. All rela
 
 ---
 
-## 🌟 STAR Story: system-design-learning-platform
+## Why I built this ?
 
 **Situation:** 
 While building modern software applications, developing structured and scalable solutions is critical. The requirement was to build and maintain `system-design-learning-platform` to address specific technical challenges and provide a robust implementation.
