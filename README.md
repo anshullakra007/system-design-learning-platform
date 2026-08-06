@@ -9,9 +9,9 @@ Instead of manually hardcoding content, this repository features a custom-built 
 
 ### 2. Proctored Certification Engine (Anti-Cheat WebRTC)
 The platform is not just a wiki—it is a verifiable credentialing suite. The `ProctoredExamEnvironment` enforces strict anti-cheat mechanisms using browser APIs:
-- **`getUserMedia()` Integration:** Forces a live Picture-in-Picture webcam feed with a recording indicator.
-- **`getDisplayMedia()` Screen Sharing:** Mandates desktop capture to prevent off-screen lookup.
-- **`visibilitychange` Tab-Locking:** Implements debounced focus-tracking to terminate the exam if the user switches tabs (ignoring brief OS popups to eliminate false positives).
+- **`getUserMedia()` Integration:**Forces a live Picture-in-Picture webcam feed with a recording indicator.
+-**`getDisplayMedia()` Screen Sharing:**Mandates desktop capture to prevent off-screen lookup.
+-**`visibilitychange` Tab-Locking:**Implements debounced focus-tracking to terminate the exam if the user switches tabs (ignoring brief OS popups to eliminate false positives).
 
 ### 3. 60fps Mobile Performance & CSS Containment
 Rendering a 140KB raw markdown payload causes massive layout thrashing and stuttering on mobile DOMs. This platform utilizes strict CSS Containment (`content-visibility: auto` and `contain-intrinsic-size`) paired with `overflow-x: hidden` constraints. The browser entirely skips layout calculations for off-screen blocks, guaranteeing 60fps fluid scrolling despite the massive data tree.
@@ -25,12 +25,12 @@ The custom Practice & Exam engines persist progression state natively without ba
 ---
 
 ##  Tech Stack
-- **Core:** React 18, Vite (for blazing fast HMR and optimized Rollup chunking)
-- **Routing & State:** Custom React Hooks + LocalStorage
-- **Content Parsing:** `react-markdown`, `remark-gfm` (GitHub Flavored Markdown), `rehype-raw`
-- **Visualizations:** Mermaid.js (styled in stark-monochrome to match the UI aesthetic)
-- **Styling:** Pure Vanilla CSS (custom scrollbars, grid layouts, fluid typography)
-- **Auth:** Firebase Auth (Google OAuth + Guest Bypass)
+-**Core:**React 18, Vite (for blazing fast HMR and optimized Rollup chunking)
+-**Routing & State:**Custom React Hooks + LocalStorage
+-**Content Parsing:**`react-markdown`, `remark-gfm` (GitHub Flavored Markdown), `rehype-raw`
+-**Visualizations:**Mermaid.js (styled in stark-monochrome to match the UI aesthetic)
+-**Styling:**Pure Vanilla CSS (custom scrollbars, grid layouts, fluid typography)
+-**Auth:**Firebase Auth (Google OAuth + Guest Bypass)
 
 ##  Setup & Development
 
@@ -54,8 +54,14 @@ This repository has undergone rigorous visual, layout, and UX auditing. All rela
 ---
 
 ## Why I built this ?
+### Situation
+Learning distributed systems and high-level architecture requires interactive, structured content, but most resources are static text blocks.
 
-**Situation:** Learning distributed systems and high-level architecture requires interactive, structured content, but most resources are static text blocks.
-**Task:** I wanted to build a dynamic learning management system specifically tailored for software architecture, featuring interactive diagrams and progress tracking.
-**Action:** I engineered a full-stack Next.js application with a PostgreSQL database. I integrated Markdown/MDX parsing to render complex technical documentation and embedded Mermaid.js for live architectural diagramming. I implemented user authentication and session management to track learning progress across modules.
-**Result:** The platform delivers an exceptional, interactive educational experience, demonstrating strong full-stack architectural design, database modeling, and specialized frontend content rendering.
+### Task
+I wanted to build a dynamic learning management system specifically tailored for software architecture, featuring interactive diagrams and progress tracking.
+
+### Action
+I engineered a full-stack Next.js application with a PostgreSQL database. I integrated Markdown/MDX parsing to render complex technical documentation and embedded Mermaid.js for live architectural diagramming. I implemented user authentication and session management to track learning progress across modules.
+
+### Result
+The platform delivers an exceptional, interactive educational experience, demonstrating strong full-stack architectural design, database modeling, and specialized frontend content rendering.
