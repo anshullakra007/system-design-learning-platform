@@ -1,8 +1,8 @@
-# Sy D L lf 🚀
+# Sy D L lf 
 
 A ly z, - ul lf bul lbl u bu y. T y w f u u fully v, ly l l , f u FAANG-lvl fl .
 
-## 🏗 Aul Hl (T "Ww" F)
+##  Aul Hl (T "Ww" F)
 
 ### 1. Au TL I (`v3.`)
 I f ully , y fu u-bul , Tf, L (TL) l. I uuly v `/y--`, w kw, fly z HTML, ul M. u fly, uu ly z `ul.` JSON .
@@ -24,7 +24,7 @@ T u & vly wu bk u. T k v b vly -ul, v `llS` w l v k, lly l UI u u ul- u.
 
 ---
 
-## 🛠 T Sk
+##  T Sk
 - **C:** R 18, V (f blz f HMR z Rllu uk)
 - **Ru & S:** Cu R Hk + LlS
 - **C :** `-kw`, `k-f` (GHub Flv Mkw), `y-w`
@@ -32,7 +32,7 @@ T u & vly wu bk u. T k v b vly -ul, v `llS` w l v k, lly l UI u u ul- u.
 - **Syl:** u Vll CSS (u llb, lyu, flu yy)
 - **Au:** Fb Au (Gl OAu + Gu By)
 
-## 🔒 Su & Dvl
+##  Su & Dvl
 
 ```b
 # Ill 
