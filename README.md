@@ -55,14 +55,7 @@ This repository has undergone rigorous visual, layout, and UX auditing. All rela
 
 ## Why I built this ?
 
-**Situation:** 
-While building modern software applications, developing structured and scalable solutions is critical. The requirement was to build and maintain `system-design-learning-platform` to address specific technical challenges and provide a robust implementation.
-
-**Task:** 
-My goal was to engineer a reliable and efficient solution for `system-design-learning-platform`, ensuring clean architecture, maintainability, and alignment with project objectives.
-
-**Action:** 
-I designed and implemented the core logic and project architecture, focusing on best practices in code organization and system design. I systematically tackled the problem by breaking down the requirements, writing modular code, and integrating necessary dependencies to bring the repository to life.
-
-**Result:** 
-The project successfully fulfilled its core requirements, serving as a functional codebase. It demonstrates a clear understanding of software engineering principles and provides a solid foundation for future scaling and feature additions.
+**Situation:** Learning distributed systems and high-level architecture requires interactive, structured content, but most resources are static text blocks.
+**Task:** I wanted to build a dynamic learning management system specifically tailored for software architecture, featuring interactive diagrams and progress tracking.
+**Action:** I engineered a full-stack Next.js application with a PostgreSQL database. I integrated Markdown/MDX parsing to render complex technical documentation and embedded Mermaid.js for live architectural diagramming. I implemented user authentication and session management to track learning progress across modules.
+**Result:** The platform delivers an exceptional, interactive educational experience, demonstrating strong full-stack architectural design, database modeling, and specialized frontend content rendering.
